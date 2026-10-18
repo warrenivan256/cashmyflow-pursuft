@@ -18,9 +18,45 @@
 @media(max-width:1000px){.app{grid-template-columns:205px minmax(0,1fr)}.sidebar{padding:22px 12px}.main{padding:23px 20px}.two-col{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.stat-value{font-size:25px}}
 @media(max-width:720px){.app{display:block;padding-bottom:76px}.sidebar{display:none}.main{padding:20px 14px 30px}.topbar{align-items:flex-start;margin-bottom:23px}.top-actions{gap:6px}.top-actions .select{max-width:118px;padding:9px 7px;font-size:12px}.top-actions .icon-btn{display:none}.stats{grid-template-columns:1fr 1fr;gap:10px}.stats .card:first-child{grid-column:1/-1}.card{padding:16px}.two-col{gap:12px}.mobile-brand{display:flex;align-items:center;gap:8px;margin-bottom:18px}.mobile-brand .brand-icon{width:34px;height:34px;font-size:18px}.mobile-brand .brand-name{font-size:17px}.bottom-nav{display:flex!important;position:fixed;z-index:5;bottom:0;left:0;right:0;justify-content:space-around;padding:8px 4px calc(8px + env(safe-area-inset-bottom));background:#0e131dee;backdrop-filter:blur(16px);border-top:1px solid var(--line)}.bottom-nav button{display:grid;justify-items:center;gap:3px;border:0;background:transparent;color:#9ba8bc;font-size:10px;padding:5px 6px;min-width:0}.bottom-nav button span:first-child{font-size:18px}.bottom-nav button.active{color:var(--mint)}.page-heading{align-items:flex-start}.page-heading .btn{font-size:12px;padding:9px}.quick-currencies{grid-template-columns:repeat(2,minmax(0,1fr))}.convert-row{gap:5px}.convert-row select{max-width:135px;font-size:12px;padding:9px 5px}.convert-row input{font-size:21px}.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}.welcome h1{font-size:24px}.welcome p{font-size:12px}.fee-item{gap:9px}.fee-right strong{font-size:13px}.table-card{padding:4px 13px}}
 @media(min-width:721px){.bottom-nav{display:none!important}}
+
+.auth-screen{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at 75% -20%,#1b2940 0,transparent 42%),var(--bg)}
+.auth-card{width:min(460px,100%);padding:26px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#151c28,#111722);box-shadow:var(--shadow)}
+.auth-brand{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.auth-brand .brand-icon{width:48px;height:48px}
+.auth-card h1{font-size:25px;line-height:1.2;margin:0 0 8px}
+.auth-card p{color:var(--muted);margin:0 0 20px}
+.auth-tabs{display:flex;gap:8px;margin:0 0 18px}
+.auth-tabs button{flex:1}
+.auth-error{display:none;background:#321e26;border:1px solid #633744;color:#ffb8c4;border-radius:10px;padding:10px 12px;margin:12px 0;font-size:12px}
+.auth-help{font-size:12px;color:var(--muted);margin-top:14px}
+.auth-help a{color:var(--mint)}
+.user-chip{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#appRoot[hidden],#authScreen[hidden]{display:none!important}
+@media(max-width:520px){.auth-card{padding:20px}}
+
 </style>
 </head>
 <body>
+<section id="authScreen" class="auth-screen">
+  <div class="auth-card">
+    <div class="auth-brand"><div class="brand-icon">₵</div><div><div class="brand-name">CashMyFlow</div><div class="eyebrow">@ PURSUFT</div></div></div>
+    <h1 id="authTitle">Your money, synced securely.</h1>
+    <p id="authSubtitle">Sign in to access your transactions, budgets, fees and savings goals across devices.</p>
+    <div class="auth-tabs" id="authTabs">
+      <button class="btn primary" type="button" id="showSignIn">Sign in</button>
+      <button class="btn ghost" type="button" id="showSignUp">Create account</button>
+    </div>
+    <form id="authForm">
+      <div class="form-group" style="margin-bottom:12px"><label for="authEmail">Email</label><input id="authEmail" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+      <div class="form-group" style="margin-bottom:12px"><label for="authPassword">Password</label><input id="authPassword" type="password" autocomplete="current-password" required minlength="8" placeholder="At least 8 characters"></div>
+      <div class="form-group" id="authConfirmWrap" style="display:none;margin-bottom:12px"><label for="authConfirm">Confirm password</label><input id="authConfirm" type="password" autocomplete="new-password" minlength="8" placeholder="Enter password again"></div>
+      <button class="btn primary" id="authSubmit" type="submit" style="width:100%;margin-top:4px">Sign in</button>
+    </form>
+    <div class="auth-error" id="authError" role="alert"></div>
+    <div class="auth-help" id="authHelp">Your financial records are stored in your private account. Use a unique password.</div>
+  </div>
+</section>
+<div id="appRoot" hidden>
 <div class="app">
 <aside class="sidebar">
   <div class="brand"><div class="brand-icon">₵</div><div><div class="brand-name">CashMyFlow</div><div class="eyebrow">@ PURSUFT</div></div></div>
@@ -37,11 +73,11 @@
   <div class="subtle" style="padding:0 9px">CashMyFlow @ Pursuft · v1.0</div>
 </aside>
 <main class="main">
-  <div class="mobile-brand"><div class="brand-icon">₵</div><div class="brand-name">CashMyFlow</div><span class="eyebrow" style="margin-left:auto">DEMO MODE</span></div>
-  <header class="topbar"><div class="welcome"><h1 id="greeting">Good evening 👋</h1><p id="dateLine">Here’s your financial snapshot.</p></div><div class="top-actions"><select id="displayCurrency" class="select" aria-label="Display currency"><option value="MYR">🇲🇾 MYR · RM</option><option value="USD">🇺🇸 USD · $</option><option value="SGD">🇸🇬 SGD · S$</option><option value="EUR">🇪🇺 EUR · €</option><option value="GBP">🇬🇧 GBP · £</option><option value="AUD">🇦🇺 AUD · A$</option><option value="PHP">🇵🇭 PHP · ₱</option></select><button class="icon-btn" id="resetBtn" title="Clear local app data">↻ Reset data</button></div></header>
+  <div class="mobile-brand"><div class="brand-icon">₵</div><div class="brand-name">CashMyFlow</div><span class="eyebrow" style="margin-left:auto">PRIVATE ACCOUNT</span></div>
+  <header class="topbar"><div class="welcome"><h1 id="greeting">Good evening 👋</h1><p id="dateLine">Here’s your financial snapshot.</p></div><div class="top-actions"><select id="displayCurrency" class="select" aria-label="Display currency"><option value="MYR">🇲🇾 MYR · RM</option><option value="USD">🇺🇸 USD · $</option><option value="SGD">🇸🇬 SGD · S$</option><option value="EUR">🇪🇺 EUR · €</option><option value="GBP">🇬🇧 GBP · £</option><option value="AUD">🇦🇺 AUD · A$</option><option value="PHP">🇵🇭 PHP · ₱</option></select><span class="subtle" id="signedInEmail" style="max-width:180px;overflow-wrap:anywhere"></span><button class="icon-btn" id="signOutBtn" title="Sign out">↪ Sign out</button><button class="icon-btn" id="resetBtn" title="Clear account data">↻ Reset data</button></div></header>
 
   <section class="page active" id="page-overview">
-    <div class="card mint balance-card" style="margin-bottom:17px"><div class="card-label">◉ &nbsp;Total balance <span class="subtle">· sample account</span></div><div class="balance-row"><div class="stat-value" id="balanceValue">RM 6,240.00</div></div><div class="stat-foot">A simple snapshot of your money in one place.</div><div class="balance-foot"><div><span>Income logged</span><strong class="positive" id="incomeValue">RM 0.00</strong></div><div><span>Expenses logged</span><strong class="negative" id="expenseValue">RM 0.00</strong></div><div><span>Fees outstanding</span><strong id="outstandingValue">RM 0.00</strong></div></div></div>
+    <div class="card mint balance-card" style="margin-bottom:17px"><div class="card-label">◉ &nbsp;Total balance <span class="subtle">· your account</span></div><div class="balance-row"><div class="stat-value" id="balanceValue">RM 6,240.00</div></div><div class="stat-foot">A simple snapshot of your money in one place.</div><div class="balance-foot"><div><span>Income logged</span><strong class="positive" id="incomeValue">RM 0.00</strong></div><div><span>Expenses logged</span><strong class="negative" id="expenseValue">RM 0.00</strong></div><div><span>Fees outstanding</span><strong id="outstandingValue">RM 0.00</strong></div></div></div>
     <div class="grid stats"><div class="card"><div class="card-label">Monthly budget <span class="stat-icon">◴</span></div><div class="stat-value" id="budgetSummary">RM 1,080</div><div class="stat-foot" id="budgetSummaryFoot">Spent across your categories</div></div><div class="card"><div class="card-label">Savings goals <span class="stat-icon" style="background:#2b2844;color:var(--purple)">♧</span></div><div class="stat-value" id="savingsSummary">RM 4,100</div><div class="stat-foot" id="savingsSummaryFoot">Saved toward your goals</div></div><div class="card"><div class="card-label">Fees marked paid <span class="stat-icon" style="background:#3c3021;color:var(--amber)">☑</span></div><div class="stat-value" id="paidFeesSummary">0</div><div class="stat-foot" id="paidFeesFoot">payments completed</div></div></div>
     <div class="grid two-col"><div class="card"><div class="card-head"><div><h3>Spending overview</h3><div class="subtle">Recent income and spending</div></div><button class="link-btn" data-go="transactions">View all →</button></div><div id="chart" class="chart"></div><div class="legend"><span><i class="dot" style="background:var(--mint)"></i>Tracked expenses</span><span><i class="dot" style="background:#354154"></i>Daily expense totals</span></div></div><div class="card"><div class="card-head"><div><h3>Budget progress</h3><div class="subtle">Stay within your limits</div></div><button class="link-btn" data-go="budgets">Manage →</button></div><div id="overviewBudgets"></div></div></div>
     <div class="grid two-col"><div class="card"><div class="card-head"><div><h3>Recent transactions</h3><div class="subtle">Your latest money movements</div></div><button class="link-btn" data-go="transactions">See all →</button></div><div id="recentTransactions" class="list"></div><button class="btn ghost" style="width:100%;margin-top:10px" data-go="transactions">＋ Add a transaction</button></div><div class="card"><div class="card-head"><div><h3>Upcoming fees</h3><div class="subtle">Never lose track of a due date</div></div><button class="link-btn" data-go="fees">View all →</button></div><div id="upcomingFees"></div><div class="notice" style="margin-top:15px">✓ Tick a fee as paid to add it to expenses and update your budget automatically.</div></div></div>
@@ -103,10 +139,16 @@
 <dialog id="goalDialog"><form id="goalForm" class="card" style="min-width:min(520px,90vw);margin:0"><div class="card-head"><div><h3 class="section-title">Create a savings goal</h3><div class="subtle">Give your next goal a name and target.</div></div><button type="button" class="icon-btn" data-close="goalDialog">✕</button></div><div class="form-grid"><div class="form-group full"><label for="goalName">Goal name</label><input id="goalName" required maxlength="70" placeholder="e.g. New laptop"></div><div class="form-group"><label for="goalTarget">Target (MYR)</label><input id="goalTarget" required type="number" min=".01" step="any" placeholder="1500"></div><div class="form-group"><label for="goalInitial">Already saved (MYR)</label><input id="goalInitial" type="number" min="0" step="any" value="0"></div></div><div class="form-actions"><button type="button" class="btn ghost" data-close="goalDialog">Cancel</button><button class="btn primary" type="submit">Create goal</button></div></form></dialog>
 <dialog id="budgetDialog"><form id="budgetForm" class="card" style="min-width:min(520px,90vw);margin:0"><div class="card-head"><div><h3 class="section-title">Add budget category</h3><div class="subtle">Set a spending limit in MYR.</div></div><button type="button" class="icon-btn" data-close="budgetDialog">✕</button></div><div class="form-grid"><div class="form-group"><label for="newBudgetName">Category name</label><input id="newBudgetName" required maxlength="50" placeholder="e.g. Healthcare"></div><div class="form-group"><label for="newBudgetLimit">Monthly limit (MYR)</label><input id="newBudgetLimit" required type="number" min=".01" step="any" placeholder="250"></div></div><div class="form-actions"><button type="button" class="btn ghost" data-close="budgetDialog">Cancel</button><button class="btn primary" type="submit">Add category</button></div></form></dialog>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./supabase-config.js"></script>
 <script>
 (() => {
   'use strict';
-  const STORAGE_KEY='moneta_prototype_v1';
+  const STORAGE_KEY='cashmyflow_private_cloud_v1';
+  const cfg=window.CASHMYFLOW_SUPABASE_CONFIG||{};
+  const supabaseReady=Boolean(cfg.url&&cfg.anonKey&&!cfg.url.includes('YOUR_PROJECT')&&!cfg.anonKey.includes('YOUR_SUPABASE'));
+  const supabaseClient=(supabaseReady&&window.supabase)?window.supabase.createClient(cfg.url,cfg.anonKey):null;
+  let currentUser=null, cloudReady=false, saveTimer=null, authMode='signin';
   const rates={MYR:1,USD:4.3,SGD:3.3,EUR:4.65,GBP:5.4,AUD:2.8,PHP:0.076};
   const symbols={MYR:'RM',USD:'$',SGD:'S$',EUR:'€',GBP:'£',AUD:'A$',PHP:'₱'};
   const icons={'Food & dining':'🍜','Shopping':'🛍️','Transport':'🚆','Subscriptions':'▣','Bills':'▤','Education':'🎓','Housing':'⌂','Other':'↗','Income':'↙'};
@@ -119,8 +161,61 @@
     displayCurrency:'MYR'
   });
   let state=loadState(), txFilter='All', feeFilter='All';
-  function loadState(){try{const s=JSON.parse(localStorage.getItem(STORAGE_KEY));if(s&&Array.isArray(s.transactions)&&Array.isArray(s.fees)&&Array.isArray(s.budgets)&&Array.isArray(s.goals))return s}catch(e){}return defaultState()}
-  function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch(e){}}
+  function loadState(){return defaultState()}
+  function save(){
+    if(!cloudReady||!currentUser||!supabaseClient)return;
+    clearTimeout(saveTimer);
+    saveTimer=setTimeout(async()=>{
+      try{
+        const payload={user_id:currentUser.id,state:state,updated_at:new Date().toISOString()};
+        const {error}=await supabaseClient.from('user_finance_state').upsert(payload,{onConflict:'user_id'});
+        if(error) setToast('Cloud save failed. Check your connection.');
+      }catch(e){setToast('Cloud save failed. Check your connection.')}
+    },450);
+  }
+  function showAuthError(message){const el=$('authError');el.textContent=message;el.style.display='block'}
+  function clearAuthError(){const el=$('authError');el.textContent='';el.style.display='none'}
+  function setAuthMode(mode){
+    authMode=mode;clearAuthError();
+    $('authTitle').textContent=mode==='signin'?'Welcome back.':'Create your private account.';
+    $('authSubtitle').textContent=mode==='signin'?'Sign in to access your money data across devices.':'Create an account to keep your records synced privately.';
+    $('authSubmit').textContent=mode==='signin'?'Sign in':'Create account';
+    $('showSignIn').className='btn '+(mode==='signin'?'primary':'ghost');
+    $('showSignUp').className='btn '+(mode==='signup'?'primary':'ghost');
+    $('authConfirmWrap').style.display=mode==='signup'?'grid':'none';
+    $('authConfirm').required=mode==='signup';
+    $('authPassword').autocomplete=mode==='signup'?'new-password':'current-password';
+  }
+  async function openPrivateApp(user){
+    currentUser=user;
+    $('signedInEmail').textContent=user.email||'Signed in';
+    $('authScreen').hidden=true;$('appRoot').hidden=false;
+    cloudReady=false;state=defaultState();
+    const {data,error}=await supabaseClient.from('user_finance_state').select('state').eq('user_id',user.id).maybeSingle();
+    if(error){showToastAfterAuth('Could not load cloud data. Check that the SQL setup was completed.');}
+    else if(data&&data.state&&typeof data.state==='object'){
+      const s=data.state;
+      if(Array.isArray(s.transactions)&&Array.isArray(s.fees)&&Array.isArray(s.budgets)&&Array.isArray(s.goals))state={...defaultState(),...s};
+    }
+    cloudReady=true;render();
+  }
+  function showToastAfterAuth(message){setTimeout(()=>setToast(message),250)}
+  async function initialiseAuth(){
+    if(!supabaseReady||!supabaseClient){
+      $('authScreen').hidden=false;$('appRoot').hidden=true;
+      $('authTitle').textContent='One setup step left';
+      $('authSubtitle').textContent='Create your free Supabase project, then add its Project URL and publishable/anon key to supabase-config.js. The app stays locked until cloud storage is configured.';
+      $('authForm').style.display='none';$('authTabs').style.display='none';
+      showAuthError('Supabase is not configured yet. Follow SETUP-SUPABASE.txt, then upload the updated files.');
+      return;
+    }
+    const {data:{session}}=await supabaseClient.auth.getSession();
+    if(session?.user){await openPrivateApp(session.user)}else{$('authScreen').hidden=false;$('appRoot').hidden=true;setAuthMode('signin')}
+    supabaseClient.auth.onAuthStateChange(async(event,session)=>{
+      if(session?.user && (!currentUser||currentUser.id!==session.user.id)){await openPrivateApp(session.user)}
+      else if(!session?.user){currentUser=null;cloudReady=false;$('appRoot').hidden=true;$('authScreen').hidden=false}
+    });
+  }
   const $=id=>document.getElementById(id);
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const n=v=>Number.isFinite(Number(v))?Number(v):0;
@@ -166,10 +261,33 @@
   }
   function render(){save();renderOverview();renderTransactions();renderBudgets();renderGoals();renderFees();renderConverter();renderMyMoney();$('displayCurrency').value=state.displayCurrency}
   function addTx(t){state.transactions.unshift({...t,id:'t'+Date.now()+Math.random().toString(16).slice(2,6)});save();render();setToast('Transaction added. Spending updated.')}
+  $('showSignIn').addEventListener('click',()=>setAuthMode('signin'));
+  $('showSignUp').addEventListener('click',()=>setAuthMode('signup'));
+  $('authForm').addEventListener('submit',async e=>{
+    e.preventDefault();clearAuthError();
+    if(!supabaseClient){showAuthError('Cloud setup is incomplete. Follow SETUP-SUPABASE.txt.');return}
+    const email=$('authEmail').value.trim(),password=$('authPassword').value;
+    if(authMode==='signup'&&password!==$('authConfirm').value){showAuthError('Passwords do not match.');return}
+    $('authSubmit').disabled=true;$('authSubmit').textContent=authMode==='signin'?'Signing in…':'Creating account…';
+    try{
+      if(authMode==='signup'){
+        const {data,error}=await supabaseClient.auth.signUp({email,password});
+        if(error)throw error;
+        if(data.session?.user){await openPrivateApp(data.session.user)}
+        else{showAuthError('Account created. Check your email for the confirmation link, then sign in.')}
+      }else{
+        const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
+        if(error)throw error;
+        if(data.user)await openPrivateApp(data.user);
+      }
+    }catch(err){showAuthError(err.message||'Authentication failed.')}
+    finally{$('authSubmit').disabled=false;$('authSubmit').textContent=authMode==='signin'?'Sign in':'Create account'}
+  });
+  $('signOutBtn').addEventListener('click',async()=>{if(supabaseClient)await supabaseClient.auth.signOut();currentUser=null;cloudReady=false;$('appRoot').hidden=true;$('authScreen').hidden=false;setAuthMode('signin')});
   document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
   document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.go)));
   $('displayCurrency').addEventListener('change',e=>{state.displayCurrency=e.target.value;render()});
-  $('resetBtn').addEventListener('click',()=>{if(confirm('Clear all transactions, fees, budgets, and savings goals saved in this browser? This cannot be undone.')){state=defaultState();save();render();showPage('overview');setToast('Local app data cleared.')}});
+  $('resetBtn').addEventListener('click',()=>{if(confirm('Clear all transactions, fees, budgets, and savings goals in your account? This cannot be undone.')){state=defaultState();save();render();showPage('overview');setToast('Account data cleared.')}});
   $('addTransactionBtn').addEventListener('click',()=>openDialog('transactionDialog'));
   $('addIncomeBtn').addEventListener('click',()=>{ $('txType').value='Income';$('txCategory').value='Income';$('txName').value='';$('txAmount').value='';$('txCurrency').value=state.displayCurrency;openDialog('transactionDialog');$('txName').placeholder='e.g. Weekly allowance'; });
   $('startingBalanceForm').addEventListener('submit',e=>{e.preventDefault();state.baseBalance=Math.max(0,n($('startingBalance').value));save();render();setToast('Starting balance updated.')});
@@ -196,8 +314,9 @@
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
     window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
   }
-  const now=new Date();$('dateLine').textContent='Here’s your financial snapshot · '+now.toLocaleDateString('en-MY',{weekday:'long',day:'numeric',month:'long'});$('feeDue').value=todayISO();render();
+  const now=new Date();$('dateLine').textContent='Here’s your financial snapshot · '+now.toLocaleDateString('en-MY',{weekday:'long',day:'numeric',month:'long'});$('feeDue').value=todayISO();initialiseAuth();
 })();
 </script>
+</div>
 </body>
 </html>
