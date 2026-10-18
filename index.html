@@ -42,6 +42,51 @@
 @media(max-width:800px){.auth-screen{grid-template-columns:1fr;justify-items:center;gap:24px;padding:24px 16px 36px}.auth-showcase{text-align:center;max-width:460px}.auth-showcase .hero-logo{width:92px;border-radius:22px;margin:0 auto 12px}.auth-showcase h2{font-size:32px;letter-spacing:-1.2px;margin-bottom:8px}.auth-showcase p{font-size:13px;line-height:1.6}.auth-feature-row{display:none}.auth-card{max-width:460px}.auth-brand{justify-content:center}.auth-brand>div:last-child{text-align:left}}
 @media(max-width:520px){.auth-card{padding:20px}.auth-screen{padding-top:26px}.auth-showcase .hero-logo{width:72px;border-radius:18px}.auth-showcase h2{font-size:27px}}
 
+
+/* Cleaner navigation, account controls and gentle number motion */
+.workspace-nav .nav-btn{padding:11px 12px;border-radius:13px;gap:11px}
+.nav-btn .ico{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:#192331;color:#b9c8d9;font-size:17px;flex:0 0 auto}
+.nav-btn.active .ico{background:#b4f0d5;color:#174331}
+.nav-btn.active{box-shadow:inset 3px 0 0 #49bd8b}
+.account-area{display:flex;align-items:center;gap:8px;position:relative}
+.profile-trigger{display:flex;align-items:center;gap:9px;border:1px solid transparent;background:transparent;color:var(--text);padding:5px 9px 5px 5px;border-radius:999px;text-align:left}
+.profile-trigger:hover{background:#18212e;border-color:var(--line)}
+.avatar{width:38px;height:38px;border-radius:50%;background:#dce1e6;color:#364152;display:grid;place-items:center;font-weight:800;font-size:15px;flex-shrink:0}
+.profile-trigger strong{display:block;font-size:13px}
+.profile-trigger small{display:block;color:var(--muted);font-size:11px}
+.notification-wrap{position:relative}
+.notification-btn{width:42px;height:42px;padding:0;position:relative;border-radius:50%;background:transparent;border:1px solid transparent;color:var(--text);font-size:20px}
+.notification-btn:hover{background:#18212e;border-color:var(--line)}
+.notification-count{position:absolute;right:1px;top:0;min-width:17px;height:17px;padding:0 4px;border-radius:99px;background:#f0bd68;color:#30200a;font-size:10px;font-weight:850;display:grid;place-items:center}
+.notification-panel{display:none;position:absolute;right:0;top:48px;width:min(340px,calc(100vw - 28px));z-index:20;background:#111923;border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 20px 50px #0009}
+.notification-panel.open{display:block}
+.notification-panel h3{font-size:15px;margin:0 0 10px}
+.notice-item{padding:11px 0;border-top:1px solid #273140;display:flex;gap:10px;align-items:flex-start}
+.notice-item:first-of-type{border-top:0}
+.notice-item .notice-symbol{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:#382e20;color:var(--amber);flex-shrink:0}
+.notice-item strong{display:block;font-size:12px}
+.notice-item small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.profile-card{max-width:760px}
+.profile-card .profile-avatar-large{width:58px;height:58px;font-size:21px}
+.profile-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.profile-note{font-size:12px;color:var(--muted);margin-top:10px}
+.money-animated{font-variant-numeric:tabular-nums}
+@media(max-width:720px){
+ .topbar{align-items:center;gap:8px}
+ .top-actions{gap:5px;flex-wrap:nowrap}
+ .top-actions .select{max-width:98px;min-width:82px;padding:9px 4px;font-size:11px}
+ .account-area{gap:2px}
+ .profile-trigger{padding:3px}
+ .profile-trigger .profile-copy{display:none}
+ .avatar{width:34px;height:34px}
+ .notification-btn{width:36px;height:36px}
+ .top-actions .account-area{display:flex}
+ .top-actions #resetBtn{display:none}
+ .top-actions #signedInEmail{display:none}
+ .page-heading p{font-size:12px;line-height:1.5}
+ .nav-btn .ico{width:31px;height:31px}
+}
+
 </style>
 </head>
 <body>
@@ -74,7 +119,7 @@
 <div class="app">
 <aside class="sidebar">
   <div class="brand"><img class="brand-icon" src="./cashmyflow-logo.png" alt=""><div><div class="brand-name">CashMyFlow</div><div class="eyebrow">@ PURSUFT</div></div></div>
-  <div><div class="nav-label">WORKSPACE</div><nav class="nav" id="sideNav">
+  <div><div class="nav-label">WORKSPACE</div><nav class="nav workspace-nav" id="sideNav">
     <button class="nav-btn active" data-page="overview"><span class="ico">▦</span>Overview</button>
     <button class="nav-btn" data-page="transactions"><span class="ico">↔</span>Transactions</button>
     <button class="nav-btn" data-page="budgets"><span class="ico">◴</span>Budgets</button>
@@ -88,7 +133,7 @@
 </aside>
 <main class="main">
   <div class="mobile-brand"><img class="brand-icon" src="./cashmyflow-logo.png" alt=""><div class="brand-name">CashMyFlow</div><span class="eyebrow" style="margin-left:auto">PRIVATE ACCOUNT</span></div>
-  <header class="topbar"><div class="welcome"><h1 id="greeting">Good evening 👋</h1><p id="dateLine">Here’s your financial snapshot.</p></div><div class="top-actions"><select id="displayCurrency" class="select" aria-label="Display currency"><option value="MYR">🇲🇾 MYR · RM</option><option value="USD">🇺🇸 USD · $</option><option value="SGD">🇸🇬 SGD · S$</option><option value="EUR">🇪🇺 EUR · €</option><option value="GBP">🇬🇧 GBP · £</option><option value="AUD">🇦🇺 AUD · A$</option><option value="PHP">🇵🇭 PHP · ₱</option></select><span class="subtle" id="signedInEmail" style="max-width:180px;overflow-wrap:anywhere"></span><button class="icon-btn" id="signOutBtn" title="Sign out">↪ Sign out</button><button class="icon-btn" id="resetBtn" title="Clear account data">↻ Reset data</button></div></header>
+  <header class="topbar"><div class="welcome"><h1 id="greeting">Good evening 👋</h1><p id="dateLine">Here’s your financial snapshot.</p></div><div class="top-actions"><select id="displayCurrency" class="select" aria-label="Display currency"><option value="MYR">🇲🇾 MYR · RM</option><option value="USD">🇺🇸 USD · $</option><option value="SGD">🇸🇬 SGD · S$</option><option value="EUR">🇪🇺 EUR · €</option><option value="GBP">🇬🇧 GBP · £</option><option value="AUD">🇦🇺 AUD · A$</option><option value="PHP">🇵🇭 PHP · ₱</option></select><span class="subtle" id="signedInEmail" style="max-width:180px;overflow-wrap:anywhere"></span><div class="account-area"><div class="notification-wrap"><button class="notification-btn" id="notificationBtn" aria-label="Notifications" aria-expanded="false" title="Upcoming fees">♧<span class="notification-count" id="notificationCount" hidden>0</span></button><div class="notification-panel" id="notificationPanel" role="region" aria-label="Upcoming payment notifications"><h3>Upcoming payments</h3><div id="notificationList"></div><button class="btn ghost small" id="viewFeesBtn" style="width:100%;margin-top:8px">View all fees</button></div></div><button class="profile-trigger" id="profileBtn" aria-label="Open profile"><span class="avatar" id="profileAvatar">W</span><span class="profile-copy"><strong id="profileGreeting">Hi, Warren</strong><small>My profile</small></span></button></div><button class="icon-btn" id="resetBtn" title="Clear account data">↻ Reset data</button></div></header>
 
   <section class="page active" id="page-overview">
     <div class="card mint balance-card" style="margin-bottom:17px"><div class="card-label">◉ &nbsp;Total balance <span class="subtle">· your account</span></div><div class="balance-row"><div class="stat-value" id="balanceValue">RM 0.00</div></div><div class="stat-foot">A simple snapshot of your money in one place.</div><div class="balance-foot"><div><span>Income logged</span><strong class="positive" id="incomeValue">RM 0.00</strong></div><div><span>Expenses logged</span><strong class="negative" id="expenseValue">RM 0.00</strong></div><div><span>Fees outstanding</span><strong id="outstandingValue">RM 0.00</strong></div></div></div>
@@ -128,6 +173,26 @@
     <div class="grid stats"><div class="card mint"><div class="card-label">Money available</div><div class="stat-value" id="myMoneyAvailable">RM 0.00</div><div class="stat-foot">Starting balance + income − tracked spending</div></div><div class="card"><div class="card-label">Income / allowance</div><div class="stat-value positive" id="myMoneyIncome">RM 0.00</div><div class="stat-foot">All recorded income</div></div><div class="card"><div class="card-label">Still need to pay</div><div class="stat-value" id="myMoneyOwed">RM 0.00</div><div class="stat-foot">Outstanding fees and bills</div></div></div>
     <div class="grid two-col"><div class="card"><div class="card-head"><div><h3>Allowance & income</h3><div class="subtle">Salary, allowance, gifts, or other money received.</div></div></div><div id="incomeList"></div></div><div class="card"><div class="card-head"><div><h3>Money you need to pay</h3><div class="subtle">Pending fees and bills from your checklist.</div></div><button class="link-btn" data-go="fees">Manage →</button></div><div id="owedList"></div><div class="notice" style="margin-top:14px">Your projected money after paying all outstanding fees is shown below.</div><div style="margin-top:13px"><div class="subtle">After outstanding payments</div><div class="stat-value" id="afterPayments" style="font-size:25px">RM 0.00</div></div></div></div>
     <div class="card"><div class="card-head"><div><h3>Starting money / allowance balance</h3><div class="subtle">Set the amount you already have before tracked transactions.</div></div></div><form id="startingBalanceForm" class="form-grid"><div class="form-group"><label for="startingBalance">Starting balance (MYR)</label><input id="startingBalance" type="number" min="0" step=".01" required></div><div class="form-group" style="align-self:end"><button class="btn primary">Update starting balance</button></div></form></div>
+  </section>
+
+  <section class="page" id="page-profile">
+    <div class="page-heading"><div><h2>Your profile</h2><p>Manage your sign-in details and keep your account secure.</p></div><button class="btn ghost" id="profileSignOutBtn">↪ Sign out</button></div>
+    <div class="card profile-card">
+      <div class="goal-top" style="margin-bottom:20px"><div class="avatar profile-avatar-large" id="profileAvatarLarge">W</div><div><strong id="profileName">Your account</strong><small id="profileEmailSummary">—</small></div></div>
+      <div class="form-grid">
+        <div class="form-group full"><label for="profileEmail">Email address</label><input id="profileEmail" type="email" readonly></div>
+        <div class="form-group full"><label for="newEmail">Change email address</label><input id="newEmail" type="email" autocomplete="email" placeholder="Enter your new email address"></div>
+      </div>
+      <div class="profile-actions"><button class="btn primary" id="changeEmailBtn">Update email</button></div>
+      <p class="profile-note">Supabase may ask you to confirm the change from your email inbox.</p>
+      <div style="border-top:1px solid var(--line);margin:22px 0"></div>
+      <h3 class="section-title" style="margin-bottom:12px">Change password</h3>
+      <div class="form-grid"><div class="form-group full"><label for="newPassword">New password</label><input id="newPassword" type="password" minlength="8" autocomplete="new-password" placeholder="At least 8 characters"></div><div class="form-group full"><label for="confirmNewPassword">Confirm new password</label><input id="confirmNewPassword" type="password" minlength="8" autocomplete="new-password" placeholder="Enter the new password again"></div></div>
+      <div class="profile-actions"><button class="btn primary" id="changePasswordBtn">Update password</button></div>
+      <div style="border-top:1px solid var(--line);margin:22px 0"></div>
+      <div class="form-group"><label>Account created</label><div id="accountCreated" class="field" style="color:var(--muted)">—</div></div>
+      <p class="profile-note" id="profileMessage" role="status" aria-live="polite"></p>
+    </div>
   </section>
 
   <section class="page" id="page-converter">
@@ -250,7 +315,7 @@
   function setToast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(setToast.timer);setToast.timer=setTimeout(()=>el.classList.remove('show'),2400)}
   function openDialog(id){$(id).showModal()}
   function closeDialog(id){$(id).close()}
-  function showPage(name){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+name));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===name));const titles={overview:'Overview',transactions:'Transactions',budgets:'Budgets',savings:'Savings goals',fees:'Fees to pay',converter:'Currency converter',money:'My money'};const h=$('greeting');h.textContent=name==='overview'?'Good evening 👋':titles[name];$('dateLine').textContent=name==='overview'?'Here’s your financial snapshot.':({transactions:'Review your income and spending.',budgets:'Give every category a clear spending limit.',savings:'Every goal starts with a small step.',fees:'Keep upcoming payments organised.',converter:'Quick conversions across seven currencies.',money:'Your income, available money, and upcoming payments.'}[name]);window.scrollTo({top:0,behavior:'smooth'});render()}
+  function showPage(name){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+name));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===name));const titles={overview:'Overview',transactions:'Transactions',budgets:'Budgets',savings:'Savings goals',fees:'Fees to pay',converter:'Currency converter',money:'My money',profile:'Your profile'};const h=$('greeting');h.textContent=name==='overview'?'Good evening 👋':titles[name];$('dateLine').textContent=name==='overview'?'Here’s your financial snapshot.':({transactions:'Review your income and spending.',budgets:'Give every category a clear spending limit.',savings:'Every goal starts with a small step.',fees:'Keep upcoming payments organised.',converter:'Quick conversions across seven currencies.',money:'Your income, available money, and upcoming payments.',profile:'Manage your email, password, and account details.'}[name]);window.scrollTo({top:0,behavior:'smooth'});render()}
   function txHTML(t){const income=t.type==='Income';return `<div class="transaction"><div class="tx-icon ${income?'income':''}">${icons[t.category]||'↗'}</div><div class="tx-main"><strong>${esc(t.name)} ${t.isFee?'<span class="status paid">PAID FEE</span>':''}</strong><span>${esc(t.category)} · ${dateLabel(t.date)} · ${esc(t.currency)}</span></div><div class="tx-amount ${income?'positive':'negative'}">${income?'+':'−'}${money(t.amount,t.currency)}<small>${income?'Income':'Expense'}</small></div>${t.isFee?'':`<button class="btn small ghost danger" data-delete-tx="${esc(t.id)}" aria-label="Delete ${esc(t.name)}">✕</button>`}</div>`}
   function renderTransactions(){const all=[...state.transactions,...paidFees().map(f=>({id:'fee-'+f.id,name:f.name,category:f.category||'Bills',amount:f.amount,currency:f.currency,type:'Expense',date:f.paidDate||todayISO(),isFee:true}))].sort((a,b)=>(b.date||'').localeCompare(a.date||''));const q=$('txSearch').value.trim().toLowerCase();const filtered=all.filter(t=>(txFilter==='All'||t.type===txFilter)&&(`${t.name} ${t.category} ${t.currency}`).toLowerCase().includes(q));$('transactionsList').innerHTML=filtered.length?filtered.map(txHTML).join(''):'<div class="empty">No matching transactions yet.</div>';$('txIncomeTotal').textContent=displayMoney(allIncomeMYR());$('txExpenseTotal').textContent=displayMoney(allExpenseMYR());}
   function renderBudgets(){const total=budgetTotal(),spent=sum(state.budgets.map(b=>categorySpent(b.name)));$('budgetTotal').textContent=displayMoney(total);$('budgetOverallBar').style.width=Math.min(100,total?spent/total*100:0)+'%';$('budgetOverallFoot').textContent=`${displayMoney(spent)} spent · ${displayMoney(Math.max(0,total-spent))} remaining`;const markup=state.budgets.map(b=>{const used=categorySpent(b.name),pct=b.limit?used/b.limit*100:0;return `<div class="card"><div class="card-head"><div><h3>${esc(b.name)}</h3><div class="subtle">Monthly spending limit</div></div><span class="stat-icon">${icons[b.name]||'◴'}</span></div><div style="font-size:24px;font-weight:800;margin:8px 0">${displayMoney(used)} <span class="subtle" style="font-size:12px;font-weight:500">/ ${money(b.limit,'MYR')}</span></div><div class="progress"><span style="width:${Math.min(100,pct)}%;background:${pct>100?'var(--red)':b.color||'var(--mint)'}"></span></div><div class="subtle" style="margin-top:8px;color:${pct>100?'var(--red)':'var(--muted)'}">${pct>100?`Over budget by ${displayMoney(used-b.limit)}`:`${displayMoney(b.limit-used)} remaining`} · ${Math.round(pct)}%</div><div class="form-group" style="margin-top:13px"><label>Monthly limit (MYR)</label><input type="number" min="0" step=".01" value="${b.limit}" data-budget-limit="${esc(b.id)}"></div></div>`}).join('');$('budgetsList').innerHTML=markup||'<div class="empty">Add a budget category to get started.</div>';renderOverviewBudgets()}
@@ -271,7 +336,45 @@
     const pending=state.fees.filter(f=>!f.paid).sort((a,b)=>a.due.localeCompare(b.due));
     $('owedList').innerHTML=pending.length?pending.map(f=>`<div class="transaction"><div class="tx-icon">◷</div><div class="tx-main"><strong>${esc(f.name)}</strong><span>Due ${dateLabel(f.due)}</span></div><div class="tx-amount negative">${money(f.amount,f.currency)}<small>Pending</small></div></div>`).join(''):'<div class="empty">Nothing outstanding — all listed fees are paid.</div>';
   }
-  function render(){save();renderOverview();renderTransactions();renderBudgets();renderGoals();renderFees();renderConverter();renderMyMoney();$('displayCurrency').value=state.displayCurrency}
+
+  function dueSoonFees(){
+    const today=new Date();today.setHours(0,0,0,0);
+    const limit=new Date(today);limit.setDate(limit.getDate()+3);
+    const toDate=d=>{if(!d)return null;const x=new Date(d+'T00:00:00');return Number.isNaN(x.getTime())?null:x};
+    return state.fees.filter(f=>!f.paid).map(f=>({...f,_dueDate:toDate(f.due)})).filter(f=>f._dueDate&&f._dueDate>=today&&f._dueDate<=limit).sort((a,b)=>a._dueDate-b._dueDate);
+  }
+  function renderNotifications(){
+    const fees=dueSoonFees(),count=$('notificationCount');
+    count.hidden=!fees.length;count.textContent=fees.length>9?'9+':String(fees.length);
+    $('notificationList').innerHTML=fees.length?fees.map(f=>{
+      const days=Math.round((f._dueDate-new Date(new Date().toDateString()))/86400000);
+      const dueLabel=days===0?'Due today':days===1?'Due tomorrow':`Due in ${days} days`;
+      return `<div class="notice-item"><span class="notice-symbol">!</span><div><strong>${esc(f.name)} · ${money(f.amount,f.currency)}</strong><small>${dueLabel} · ${dateLabel(f.due)}</small></div></div>`;
+    }).join(''):'<div class="empty" style="padding:18px 4px">No unpaid fees due in the next 3 days.</div>';
+  }
+  function renderProfile(){
+    const email=currentUser?.email||'';
+    const initial=(email.split('@')[0]||'W').trim().charAt(0).toUpperCase()||'W';
+    $('profileAvatar').textContent=initial;$('profileAvatarLarge').textContent=initial;
+    $('profileGreeting').textContent='Hi, Warren';
+    $('profileName').textContent='Warren';
+    $('profileEmailSummary').textContent=email;$('profileEmail').value=email;
+    const created=currentUser?.created_at?new Date(currentUser.created_at):null;
+    $('accountCreated').textContent=created&&!Number.isNaN(created.getTime())?created.toLocaleDateString('en-MY',{day:'numeric',month:'long',year:'numeric'}):'Unavailable';
+  }
+  function animateMoney(el,newText){
+    if(!el)return;
+    const oldText=el.textContent||'';
+    const parse=t=>{const m=t.replace(/,/g,'').match(/-?\d+(?:\.\d+)?/);return m?Number(m[0]):null};
+    const start=parse(oldText),end=parse(newText);
+    if(start===null||end===null||!Number.isFinite(start)||!Number.isFinite(end)||oldText===newText){el.textContent=newText;return}
+    const prefix=newText.match(/^[^\d-]*/)?.[0]||'',suffix=newText.match(/[^\d]*$/)?.[0]||'';
+    const duration=420,begin=performance.now();el.classList.add('money-animated');
+    const tick=now=>{const p=Math.min(1,(now-begin)/duration),eased=1-Math.pow(1-p,3),value=start+(end-start)*eased;el.textContent=prefix+value.toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2})+suffix;if(p<1)requestAnimationFrame(tick);else el.textContent=newText};
+    requestAnimationFrame(tick);
+  }
+
+  function render(){const previousBalance=$('balanceValue').textContent;save();renderOverview();const nextBalance=$('balanceValue').textContent;if(previousBalance&&previousBalance!==nextBalance){$('balanceValue').textContent=previousBalance;animateMoney($('balanceValue'),nextBalance)}renderTransactions();renderBudgets();renderGoals();renderFees();renderConverter();renderMyMoney();renderNotifications();renderProfile();$('displayCurrency').value=state.displayCurrency}
   function addTx(t){state.transactions.unshift({...t,id:'t'+Date.now()+Math.random().toString(16).slice(2,6)});save();render();setToast('Transaction added. Spending updated.')}
   $('showSignIn').addEventListener('click',()=>setAuthMode('signin'));
   $('showSignUp').addEventListener('click',()=>setAuthMode('signup'));
@@ -296,6 +399,32 @@
     finally{$('authSubmit').disabled=false;$('authSubmit').textContent=authMode==='signin'?'Sign in':'Create account'}
   });
   $('signOutBtn').addEventListener('click',async()=>{if(supabaseClient)await supabaseClient.auth.signOut();currentUser=null;cloudReady=false;$('appRoot').hidden=true;$('authScreen').hidden=false;setAuthMode('signin')});
+
+  $('profileBtn').addEventListener('click',()=>{ $('notificationPanel').classList.remove('open');showPage('profile') });
+  $('notificationBtn').addEventListener('click',()=>{const panel=$('notificationPanel'),open=!panel.classList.contains('open');panel.classList.toggle('open',open);$('notificationBtn').setAttribute('aria-expanded',String(open));renderNotifications()});
+  $('viewFeesBtn').addEventListener('click',()=>{$('notificationPanel').classList.remove('open');showPage('fees')});
+  document.addEventListener('click',e=>{if(!e.target.closest('.notification-wrap')){$('notificationPanel').classList.remove('open');$('notificationBtn').setAttribute('aria-expanded','false')}});
+  async function signOut(){if(supabaseClient)await supabaseClient.auth.signOut();currentUser=null;cloudReady=false;$('appRoot').hidden=true;$('authScreen').hidden=false;setAuthMode('signin')}
+  $('profileSignOutBtn').addEventListener('click',signOut);
+  $('signOutBtn').addEventListener('click',signOut);
+  $('changeEmailBtn').addEventListener('click',async()=>{
+    const email=$('newEmail').value.trim();$('profileMessage').textContent='';
+    if(!email){$('profileMessage').textContent='Enter your new email address first.';return}
+    $('changeEmailBtn').disabled=true;
+    try{const {error}=await supabaseClient.auth.updateUser({email});if(error)throw error;$('profileMessage').textContent='Email change requested. Check your inbox for any confirmation links.';$('newEmail').value=''}
+    catch(err){$('profileMessage').textContent=err.message||'Could not update email.'}
+    finally{$('changeEmailBtn').disabled=false}
+  });
+  $('changePasswordBtn').addEventListener('click',async()=>{
+    const password=$('newPassword').value,confirmPassword=$('confirmNewPassword').value;$('profileMessage').textContent='';
+    if(password.length<8){$('profileMessage').textContent='Use a password with at least 8 characters.';return}
+    if(password!==confirmPassword){$('profileMessage').textContent='The passwords do not match.';return}
+    $('changePasswordBtn').disabled=true;
+    try{const {error}=await supabaseClient.auth.updateUser({password});if(error)throw error;$('profileMessage').textContent='Password updated successfully.';$('newPassword').value='';$('confirmNewPassword').value=''}
+    catch(err){$('profileMessage').textContent=err.message||'Could not update password.'}
+    finally{$('changePasswordBtn').disabled=false}
+  });
+
   document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
   document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.go)));
   $('displayCurrency').addEventListener('change',e=>{state.displayCurrency=e.target.value;render()});
