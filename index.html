@@ -43,7 +43,7 @@
 @media(max-width:520px){.auth-card{padding:20px}.auth-screen{padding-top:26px}.auth-showcase .hero-logo{width:72px;border-radius:18px}.auth-showcase h2{font-size:27px}}
 
 
-/* Cleaner navigation, account controls and gentle number motion */
+
 .workspace-nav .nav-btn{padding:11px 12px;border-radius:13px;gap:11px}
 .nav-btn .ico{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:#192331;color:#b9c8d9;font-size:17px;flex:0 0 auto}
 .nav-btn.active .ico{background:#b4f0d5;color:#174331}
@@ -88,7 +88,7 @@
 }
 
 
-/* CashMyFlow refresh: accessible light default, optional dark mode, and clear click targets */
+
 html{color-scheme:light}html[data-theme="dark"]{color-scheme:dark}body{transition:background .2s,color .2s}button,.nav-btn,.workspace-tile,.profile-menu button{pointer-events:auto;position:relative;z-index:1}.topbar,.top-actions,.account-area{overflow:visible}.account-area{z-index:30}.profile-menu{display:none;position:absolute;right:0;top:calc(100% + 10px);width:250px;padding:10px;border:1px solid var(--line);border-radius:17px;background:var(--panel);box-shadow:0 20px 50px #0002;z-index:100}.profile-menu.open{display:block}.profile-menu-head{display:flex;align-items:center;gap:10px;padding:8px 8px 12px;border-bottom:1px solid var(--line);margin-bottom:6px}.profile-menu-head strong,.profile-menu-head small{display:block}.profile-menu-head small{color:var(--muted);font-size:11px}.profile-menu button{display:flex;width:100%;align-items:center;gap:7px;text-align:left;padding:11px 9px;border:0;border-radius:10px;background:transparent;color:var(--text);font-weight:650}.profile-menu button:hover{background:var(--panel2)}.profile-menu button span:last-child{margin-left:auto}.profile-menu .menu-signout{color:#d94343}.workspace-shortcuts{margin:0 0 18px}.workspace-shortcuts h3{font-size:16px;margin:0 0 10px}.workspace-tiles{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}.workspace-tile{display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left;padding:15px 13px;border:1px solid var(--line);border-radius:15px;background:var(--panel);color:var(--text);min-width:0;transition:transform .16s,border-color .16s}.workspace-tile:hover{transform:translateY(-2px);border-color:var(--mint)}.workspace-tile>span{font-size:24px;margin-bottom:3px}.workspace-tile strong{font-size:12px}.workspace-tile small{font-size:11px;color:var(--muted)}.theme-choice-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.theme-choice{display:grid;gap:7px;justify-items:start;text-align:left;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--panel2);color:var(--text)}.theme-choice strong{font-size:14px}.theme-choice small{color:var(--muted)}.theme-choice.selected{border-color:#2ebd88;box-shadow:0 0 0 2px #2ebd8820}.nav-btn .ico{font-size:19px}.notification-btn{font-size:21px}
 /* Light theme is the default; the existing logo and all finance logic are unchanged. */
 html[data-theme="light"]{--bg:#f6f8fb;--panel:#ffffff;--panel2:#f2f5f8;--panel3:#eaf0f5;--line:#dce3eb;--text:#152033;--muted:#627187;--mint:#a6efd0;--mint2:#d9f9e9;--purple:#8b76d8;--red:#d84d60;--amber:#a66b0b;--blue:#316fc4;--shadow:0 8px 24px #12233a0b}
@@ -304,7 +304,7 @@ html[data-theme="dark"]{--bg:#0b0e14;--panel:#111722;--panel2:#151c28;--panel3:#
   }
   async function openPrivateApp(user){
     currentUser=user;
-    // Email is intentionally kept inside My profile, not shown in the top bar.
+    
     $('authScreen').hidden=true;$('appRoot').hidden=false;
     cloudReady=false;state=defaultState();
     const {data,error}=await supabaseClient.from('user_finance_state').select('state').eq('user_id',user.id).maybeSingle();
@@ -350,7 +350,7 @@ html[data-theme="dark"]{--bg:#0b0e14;--panel:#111722;--panel2:#151c28;--panel3:#
   const todayISO=()=>new Date().toISOString().slice(0,10);
   const sum=arr=>arr.reduce((s,x)=>s+x,0);
   const paidFees=()=>state.fees.filter(f=>f.paid);
-  // Fee expenses are derived from the fee checklist, so toggling a fee never creates duplicate transactions.
+  
   function expenseTransactions(){return [...state.transactions.filter(t=>t.type==='Expense'),...paidFees().map(f=>({id:'fee-'+f.id,name:f.name,category:f.category||'Bills',amount:f.amount,currency:f.currency,type:'Expense',date:f.paidDate||todayISO(),isFee:true}))]}
   function allIncomeMYR(){return sum(state.transactions.filter(t=>t.type==='Income').map(t=>toMYR(t.amount,t.currency)))}
   function allExpenseMYR(){return sum(expenseTransactions().map(t=>toMYR(t.amount,t.currency)))}
@@ -465,7 +465,7 @@ html[data-theme="dark"]{--bg:#0b0e14;--panel:#111722;--panel2:#151c28;--panel3:#
     }catch(err){showAuthError(err.message||'Authentication failed.')}
     finally{$('authSubmit').disabled=false;$('authSubmit').textContent=authMode==='signin'?'Sign in':'Create account'}
   });
-  // Sign-out is wired to the profile menu and profile page below.
+ 
 
   function setTheme(theme){const next=theme==='dark'?'dark':'light';document.documentElement.setAttribute('data-theme',next);try{localStorage.setItem('cashmyflow-theme',next)}catch(e){}$('themeStatus').textContent=`${next==='dark'?'Dark':'Light'} mode is active.`;$('lightThemeBtn').classList.toggle('selected',next==='light');$('darkThemeBtn').classList.toggle('selected',next==='dark');$('menuThemeBtn').innerHTML=next==='dark'?'☀️ &nbsp; Switch to light mode <span class=\"theme-symbol\">☀</span>':'🌙 &nbsp; Switch to dark mode <span class=\"theme-symbol\">☾</span>';}
   try{setTheme(localStorage.getItem('cashmyflow-theme')||'light')}catch(e){setTheme('light')}
