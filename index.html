@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -87,6 +87,15 @@
  .nav-btn .ico{width:31px;height:31px}
 }
 
+
+/* CashMyFlow refresh: accessible light default, optional dark mode, and clear click targets */
+html{color-scheme:light}html[data-theme="dark"]{color-scheme:dark}body{transition:background .2s,color .2s}button,.nav-btn,.workspace-tile,.profile-menu button{pointer-events:auto;position:relative;z-index:1}.topbar,.top-actions,.account-area{overflow:visible}.account-area{z-index:30}.profile-menu{display:none;position:absolute;right:0;top:calc(100% + 10px);width:250px;padding:10px;border:1px solid var(--line);border-radius:17px;background:var(--panel);box-shadow:0 20px 50px #0002;z-index:100}.profile-menu.open{display:block}.profile-menu-head{display:flex;align-items:center;gap:10px;padding:8px 8px 12px;border-bottom:1px solid var(--line);margin-bottom:6px}.profile-menu-head strong,.profile-menu-head small{display:block}.profile-menu-head small{color:var(--muted);font-size:11px}.profile-menu button{display:flex;width:100%;align-items:center;gap:7px;text-align:left;padding:11px 9px;border:0;border-radius:10px;background:transparent;color:var(--text);font-weight:650}.profile-menu button:hover{background:var(--panel2)}.profile-menu button span:last-child{margin-left:auto}.profile-menu .menu-signout{color:#d94343}.workspace-shortcuts{margin:0 0 18px}.workspace-shortcuts h3{font-size:16px;margin:0 0 10px}.workspace-tiles{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}.workspace-tile{display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left;padding:15px 13px;border:1px solid var(--line);border-radius:15px;background:var(--panel);color:var(--text);min-width:0;transition:transform .16s,border-color .16s}.workspace-tile:hover{transform:translateY(-2px);border-color:var(--mint)}.workspace-tile>span{font-size:24px;margin-bottom:3px}.workspace-tile strong{font-size:12px}.workspace-tile small{font-size:11px;color:var(--muted)}.theme-choice-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.theme-choice{display:grid;gap:7px;justify-items:start;text-align:left;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--panel2);color:var(--text)}.theme-choice strong{font-size:14px}.theme-choice small{color:var(--muted)}.theme-choice.selected{border-color:#2ebd88;box-shadow:0 0 0 2px #2ebd8820}.nav-btn .ico{font-size:19px}.notification-btn{font-size:21px}
+/* Light theme is the default; the existing logo and all finance logic are unchanged. */
+html[data-theme="light"]{--bg:#f6f8fb;--panel:#ffffff;--panel2:#f2f5f8;--panel3:#eaf0f5;--line:#dce3eb;--text:#152033;--muted:#627187;--mint:#a6efd0;--mint2:#d9f9e9;--purple:#8b76d8;--red:#d84d60;--amber:#a66b0b;--blue:#316fc4;--shadow:0 8px 24px #12233a0b}
+html[data-theme="light"] body{background:#f7f9fc;color:var(--text)}html[data-theme="light"] .sidebar{background:#fff;border-color:#e4e9ef}html[data-theme="light"] .card{background:#fff;border-color:#e2e8f0;box-shadow:0 6px 22px #15243a08}html[data-theme="light"] .card.mint,html[data-theme="light"] .balance-card{background:linear-gradient(110deg,#effcf6,#fff)!important;border-color:#d2f0e2}html[data-theme="light"] .balance-foot{border-color:#dcece4}html[data-theme="light"] .balance-foot span{color:#627b70}html[data-theme="light"] .select,html[data-theme="light"] .field,html[data-theme="light"] input,html[data-theme="light"] textarea,html[data-theme="light"] .pill{background:#fff;border-color:#d9e1eb;color:#152033}html[data-theme="light"] .icon-btn{background:#fff;color:#172236;border-color:#dce3eb}html[data-theme="light"] .btn{background:#fff;color:#172236;border-color:#dce3eb}html[data-theme="light"] .btn.primary{background:#baf3dc;color:#124a36;border-color:#baf3dc}html[data-theme="light"] .btn.ghost{background:transparent;color:#31435b}html[data-theme="light"] .nav-btn{color:#45556a}html[data-theme="light"] .nav-btn:hover{background:#f1f6f8;color:#152033}html[data-theme="light"] .nav-btn.active{background:#d9f9e9;color:#164b38}html[data-theme="light"] .nav-btn .ico{background:#eef3f6;color:#3d5a56}html[data-theme="light"] .nav-btn.active .ico{background:#baf3dc;color:#164b38}html[data-theme="light"] .demo-card{background:#f0fbf5;border-color:#d7efe3}html[data-theme="light"] .demo-card strong{color:#24553f}html[data-theme="light"] .demo-card p{color:#5b7869}html[data-theme="light"] .tx-icon{background:#edf2f6}html[data-theme="light"] .tx-icon.income{background:#e1f7eb}html[data-theme="light"] .transaction,html[data-theme="light"] .fee-item,html[data-theme="light"] .budget-row{border-color:#e8edf2}html[data-theme="light"] .progress{background:#e7edf2}html[data-theme="light"] .notification-panel,html[data-theme="light"] .profile-menu{background:#fff;box-shadow:0 20px 50px #16243a18}html[data-theme="light"] .notification-panel .notice-item{border-color:#e7edf2}html[data-theme="light"] .notice-item .notice-symbol{background:#fff2d9}html[data-theme="light"] .result-box{background:#effbf5;border-color:#d2f0df}html[data-theme="light"] .result-box .big{color:#14764c}html[data-theme="light"] .result-box p{color:#5a7869}html[data-theme="light"] .convert-field,html[data-theme="light"] .quick-currencies button{background:#fff;border-color:#dce3eb;color:#152033}html[data-theme="light"] .quick-currencies span{color:#627187}html[data-theme="light"] .pill.active{background:#d9f9e9;color:#164b38;border-color:#bcebd4}html[data-theme="light"] .status.paid{background:#e0f8eb;color:#17633e}html[data-theme="light"] .status.pending{background:#fff2d8;color:#8b5b0b}html[data-theme="light"] .notice{background:#effbf5;border-color:#d2f0df;color:#416a56}html[data-theme="light"] .bottom-nav{background:#ffffffed;border-color:#e0e7ee}html[data-theme="light"] .bottom-nav button{color:#5c6d82}html[data-theme="light"] .bottom-nav button.active{color:#13784d}html[data-theme="light"] .auth-screen{background:radial-gradient(ellipse at 12% 38%,#baf3dc88 0,transparent 36%),#f7f9fc}html[data-theme="light"] .auth-card{background:#fff;border-color:#e0e7ee;box-shadow:0 20px 60px #15243a12}html[data-theme="light"] .auth-showcase p{color:#53647a}html[data-theme="light"] .auth-feature{background:#eefaf4;border-color:#d6eee2;color:#286348}html[data-theme="light"] .auth-card p{color:#627187}html[data-theme="light"] .auth-error{background:#fff0f2;border-color:#f2cbd2;color:#b4233c}
+html[data-theme="dark"]{--bg:#0b0e14;--panel:#111722;--panel2:#151c28;--panel3:#1a2230;--line:#293344;--text:#f1f5fa;--muted:#91a0b5;--mint:#9be7c4;--mint2:#d1fae5;--purple:#b1a5ff;--red:#ff9dab;--amber:#f4c982;--blue:#8bb8ff;--shadow:0 16px 40px #0002}
+@media(max-width:1100px){.workspace-tiles{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:720px){.workspace-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.profile-menu{right:-8px;top:calc(100% + 8px);width:235px}.topbar{position:relative;z-index:25}.top-actions{position:relative;z-index:26}.theme-choice-row{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -106,6 +115,7 @@
       <button class="btn ghost" type="button" id="showSignUp">Create account</button>
     </div>
     <form id="authForm">
+      <div class="form-grid" id="authNameFields" style="display:none;margin-bottom:12px"><div class="form-group"><label for="authFirstName">First name</label><input id="authFirstName" type="text" autocomplete="given-name" maxlength="60" placeholder="First name"></div><div class="form-group"><label for="authLastName">Last name / surname</label><input id="authLastName" type="text" autocomplete="family-name" maxlength="60" placeholder="Last name"></div></div>
       <div class="form-group" style="margin-bottom:12px"><label for="authEmail">Email address</label><input id="authEmail" type="email" autocomplete="email" required placeholder="you@example.com"></div>
       <div class="form-group" style="margin-bottom:12px"><label for="authPassword">Password</label><input id="authPassword" type="password" autocomplete="current-password" required minlength="8" placeholder="At least 8 characters"></div>
       <div class="form-group" id="authConfirmWrap" style="display:none;margin-bottom:12px"><label for="authConfirm">Confirm password</label><input id="authConfirm" type="password" autocomplete="new-password" minlength="8" placeholder="Enter password again"></div>
@@ -120,12 +130,12 @@
 <aside class="sidebar">
   <div class="brand"><img class="brand-icon" src="./cashmyflow-logo.png" alt=""><div><div class="brand-name">CashMyFlow</div><div class="eyebrow">@ PURSUFT</div></div></div>
   <div><div class="nav-label">WORKSPACE</div><nav class="nav workspace-nav" id="sideNav">
-    <button class="nav-btn active" data-page="overview"><span class="ico">▦</span>Overview</button>
-    <button class="nav-btn" data-page="transactions"><span class="ico">↔</span>Transactions</button>
-    <button class="nav-btn" data-page="budgets"><span class="ico">◴</span>Budgets</button>
-    <button class="nav-btn" data-page="savings"><span class="ico">♧</span>Savings goals</button>
-    <button class="nav-btn" data-page="fees"><span class="ico">☑</span>Fees to pay <span id="feeBadge" style="margin-left:auto;font-size:11px"></span></button>
-    <button class="nav-btn" data-page="money"><span class="ico">▤</span>My money</button>
+    <button class="nav-btn active" data-page="overview"><span class="ico">🏠</span>Overview</button>
+    <button class="nav-btn" data-page="transactions"><span class="ico">💵</span>Transactions</button>
+    <button class="nav-btn" data-page="budgets"><span class="ico">⏰</span>Budgets</button>
+    <button class="nav-btn" data-page="savings"><span class="ico">🌱</span>Savings goals</button>
+    <button class="nav-btn" data-page="fees"><span class="ico">✅</span>Fees to pay <span id="feeBadge" style="margin-left:auto;font-size:11px"></span></button>
+    <button class="nav-btn" data-page="money"><span class="ico">📄</span>My money</button>
     <button class="nav-btn" data-page="converter"><span class="ico">⇄</span>Currency converter</button>
   </nav></div>
   <div class="side-bottom demo-card"><span style="font-size:18px">✦</span><strong>Small steps add up.</strong><p>Track your spending, build better habits, and make your money work for you.</p></div>
@@ -133,11 +143,12 @@
 </aside>
 <main class="main">
   <div class="mobile-brand"><img class="brand-icon" src="./cashmyflow-logo.png" alt=""><div class="brand-name">CashMyFlow</div><span class="eyebrow" style="margin-left:auto">PRIVATE ACCOUNT</span></div>
-  <header class="topbar"><div class="welcome"><h1 id="greeting">Good evening 👋</h1><p id="dateLine">Here’s your financial snapshot.</p></div><div class="top-actions"><select id="displayCurrency" class="select" aria-label="Display currency"><option value="MYR">🇲🇾 MYR · RM</option><option value="USD">🇺🇸 USD · $</option><option value="SGD">🇸🇬 SGD · S$</option><option value="EUR">🇪🇺 EUR · €</option><option value="GBP">🇬🇧 GBP · £</option><option value="AUD">🇦🇺 AUD · A$</option><option value="PHP">🇵🇭 PHP · ₱</option></select><span class="subtle" id="signedInEmail" style="max-width:180px;overflow-wrap:anywhere"></span><div class="account-area"><div class="notification-wrap"><button class="notification-btn" id="notificationBtn" aria-label="Notifications" aria-expanded="false" title="Upcoming fees">♧<span class="notification-count" id="notificationCount" hidden>0</span></button><div class="notification-panel" id="notificationPanel" role="region" aria-label="Upcoming payment notifications"><h3>Upcoming payments</h3><div id="notificationList"></div><button class="btn ghost small" id="viewFeesBtn" style="width:100%;margin-top:8px">View all fees</button></div></div><button class="profile-trigger" id="profileBtn" aria-label="Open profile"><span class="avatar" id="profileAvatar">W</span><span class="profile-copy"><strong id="profileGreeting">Hi, Warren</strong><small>My profile</small></span></button></div><button class="icon-btn" id="resetBtn" title="Clear account data">↻ Reset data</button></div></header>
+  <header class="topbar"><div class="welcome"><h1 id="greeting">Good morning 👋</h1><p id="dateLine">Here’s your financial snapshot.</p></div><div class="top-actions"><select id="displayCurrency" class="select" aria-label="Display currency"><option value="MYR">🇲🇾 MYR · RM</option><option value="USD">🇺🇸 USD · $</option><option value="SGD">🇸🇬 SGD · S$</option><option value="EUR">🇪🇺 EUR · €</option><option value="GBP">🇬🇧 GBP · £</option><option value="AUD">🇦🇺 AUD · A$</option><option value="PHP">🇵🇭 PHP · ₱</option></select><div class="account-area"><div class="notification-wrap"><button class="notification-btn" id="notificationBtn" aria-label="Notifications" aria-expanded="false" title="Upcoming fees">🔔<span class="notification-count" id="notificationCount" hidden>0</span></button><div class="notification-panel" id="notificationPanel" role="region" aria-label="Upcoming payment notifications"><h3>Upcoming payments</h3><div id="notificationList"></div><button class="btn ghost small" id="viewFeesBtn" style="width:100%;margin-top:8px">View all fees</button></div></div><button class="profile-trigger" id="profileBtn" aria-label="Open account menu" aria-expanded="false"><span class="avatar" id="profileAvatar">W</span><span class="profile-copy"><strong id="profileGreeting">Hi there</strong><small>My profile ▾</small></span></button><div class="profile-menu" id="profileMenu"><div class="profile-menu-head"><span class="avatar" id="menuAvatar">W</span><div><strong id="menuName">Your account</strong><small>Manage your account</small></div></div><button type="button" data-profile-action="profile">👤 &nbsp; My profile <span>›</span></button><button type="button" data-profile-action="settings">⚙️ &nbsp; Settings <span>›</span></button><button type="button" id="menuThemeBtn">🌙 &nbsp; Switch to dark mode <span class="theme-symbol">☾</span></button><button type="button" id="menuSignOutBtn" class="menu-signout">🚪 &nbsp; Log out</button></div></div><button class="icon-btn" id="resetBtn" title="Clear account data">↻ Reset data</button></div></header>
 
   <section class="page active" id="page-overview">
     <div class="card mint balance-card" style="margin-bottom:17px"><div class="card-label">◉ &nbsp;Total balance <span class="subtle">· your account</span></div><div class="balance-row"><div class="stat-value" id="balanceValue">RM 0.00</div></div><div class="stat-foot">A simple snapshot of your money in one place.</div><div class="balance-foot"><div><span>Income logged</span><strong class="positive" id="incomeValue">RM 0.00</strong></div><div><span>Expenses logged</span><strong class="negative" id="expenseValue">RM 0.00</strong></div><div><span>Fees outstanding</span><strong id="outstandingValue">RM 0.00</strong></div></div></div>
     <div class="grid stats dashboard-stats"><div class="card income-card"><div class="card-label">Income <span class="stat-icon">↗</span></div><div class="stat-value positive" id="incomeSummary">RM 0.00</div><div class="stat-foot">This month</div></div><div class="card expense-card"><div class="card-label">Expenses <span class="stat-icon">↘</span></div><div class="stat-value negative" id="expenseSummary">RM 0.00</div><div class="stat-foot">This month</div></div><div class="card fees-card"><div class="card-label">Fees <span class="stat-icon">◈</span></div><div class="stat-value" id="feesSummary">RM 0.00</div><div class="stat-foot">Marked paid</div></div><div class="card savings-card"><div class="card-label">Savings goals <span class="stat-icon">◎</span></div><div class="stat-value" id="savingsSummary">RM 0.00</div><div class="stat-foot" id="savingsSummaryFoot">Total saved</div></div></div>
+    <div class="workspace-shortcuts"><h3>Your workspace</h3><div class="workspace-tiles"><button class="workspace-tile" data-go="transactions"><span>💵</span><strong>Transactions</strong><small>Track your spending</small></button><button class="workspace-tile" data-go="budgets"><span>⏰</span><strong>Budgets</strong><small>Stay within your limits</small></button><button class="workspace-tile" data-go="savings"><span>🌱</span><strong>Savings goals</strong><small>Save for what matters</small></button><button class="workspace-tile" data-go="fees"><span>✅</span><strong>Fees to pay</strong><small>Manage upcoming bills</small></button><button class="workspace-tile" data-go="money"><span>📄</span><strong>My money</strong><small>See your overview</small></button><button class="workspace-tile" data-go="converter"><span>⇄</span><strong>Currency converter</strong><small>Convert currencies</small></button></div></div>
     <div class="grid two-col"><div class="card"><div class="card-head"><div><h3>Spending overview</h3><div class="subtle">Recent income and spending</div></div><button class="link-btn" data-go="transactions">View all →</button></div><div id="chart" class="chart"></div><div class="legend"><span><i class="dot" style="background:var(--mint)"></i>Tracked expenses</span><span><i class="dot" style="background:#354154"></i>Daily expense totals</span></div></div><div class="card"><div class="card-head"><div><h3>Budget progress</h3><div class="subtle">Stay within your limits</div></div><button class="link-btn" data-go="budgets">Manage →</button></div><div id="overviewBudgets"></div></div></div>
     <div class="grid two-col"><div class="card"><div class="card-head"><div><h3>Recent transactions</h3><div class="subtle">Your latest money movements</div></div><button class="link-btn" data-go="transactions">See all →</button></div><div id="recentTransactions" class="list"></div><button class="btn ghost" style="width:100%;margin-top:10px" data-go="transactions">＋ Add a transaction</button></div><div class="card"><div class="card-head"><div><h3>Upcoming fees</h3><div class="subtle">Never lose track of a due date</div></div><button class="link-btn" data-go="fees">View all →</button></div><div id="upcomingFees"></div><div class="notice" style="margin-top:15px">✓ Tick a fee as paid to add it to expenses and update your budget automatically.</div></div></div>
   </section>
@@ -195,6 +206,12 @@
     </div>
   </section>
 
+  <section class="page" id="page-settings">
+    <div class="page-heading"><div><h2>Settings</h2><p>Make CashMyFlow comfortable for you to use.</p></div></div>
+    <div class="card profile-card"><h3 class="section-title" style="margin-bottom:8px">Appearance</h3><p class="subtle" style="margin-top:0">Choose the look that's easiest on your eyes. Your choice is saved on this device.</p><div class="theme-choice-row"><button type="button" class="theme-choice" id="lightThemeBtn">☀️ <strong>Light mode</strong><small>Clean white workspace</small></button><button type="button" class="theme-choice" id="darkThemeBtn">🌙 <strong>Dark mode</strong><small>Low-light workspace</small></button></div><p class="profile-note" id="themeStatus" role="status" aria-live="polite"></p></div>
+    <div class="card profile-card" style="margin-top:16px"><h3 class="section-title" style="margin-bottom:8px">Account</h3><p class="subtle">Your account details and security options are available in My profile.</p><button class="btn primary" data-go="profile">👤 Open my profile</button></div>
+  </section>
+
   <section class="page" id="page-converter">
     <div class="page-heading"><div><h2>Currency converter</h2><p>Quickly convert between currencies for your everyday spending, including Philippine pesos.</p></div></div>
     <div class="converter-box"><div class="card"><div class="card-head"><div><h3>Convert money</h3><div class="subtle">Enter an amount and choose currencies.</div></div><span class="stat-icon">⇄</span></div><div class="convert-field"><label for="convertAmount">You send</label><div class="convert-row"><input id="convertAmount" type="number" min="0" step="any" value="0"><select id="fromCurrency" class="select"><option value="MYR">🇲🇾 MYR</option><option value="USD">🇺🇸 USD</option><option value="SGD">🇸🇬 SGD</option><option value="EUR">🇪🇺 EUR</option><option value="GBP">🇬🇧 GBP</option><option value="AUD">🇦🇺 AUD</option><option value="PHP">🇵🇭 PHP</option></select></div></div><div class="swap-row"><button class="swap" id="swapCurrencies" aria-label="Swap currencies">↕</button></div><div class="convert-field"><label for="toCurrency">They receive</label><div class="convert-row"><input id="convertResult" readonly value="0.00"><select id="toCurrency" class="select"><option value="MYR">🇲🇾 MYR</option><option value="USD" selected>🇺🇸 USD</option><option value="SGD">🇸🇬 SGD</option><option value="EUR">🇪🇺 EUR</option><option value="GBP">🇬🇧 GBP</option><option value="AUD">🇦🇺 AUD</option><option value="PHP">🇵🇭 PHP</option></select></div></div><div class="result-box"><div class="subtle">Estimated converted amount</div><div class="big" id="convertBig">0.00</div><p id="rateLine">Illustrative rate · not a live exchange quote.</p></div><p class="subtle" style="margin:13px 2px 0">Rates are placeholders for this offline prototype. Real exchange rates and provider fees should be connected before relying on the conversion for payments.</p></div><div class="card" style="margin-top:16px"><h3 class="section-title">Quick currency rates</h3><div class="quick-currencies" id="quickRates"></div></div></div>
@@ -204,12 +221,12 @@
 </main>
 </div>
 <nav class="bottom-nav" id="bottomNav">
-  <button class="active" data-page="overview"><span>▦</span><span>Home</span></button>
-  <button data-page="transactions"><span>↔</span><span>Activity</span></button>
-  <button data-page="fees"><span>☑</span><span>Fees</span></button>
+  <button class="active" data-page="overview"><span>🏠</span><span>Home</span></button>
+  <button data-page="transactions"><span>💵</span><span>Activity</span></button>
+  <button data-page="fees"><span>✅</span><span>Fees</span></button>
   <button data-page="converter"><span>⇄</span><span>Convert</span></button>
-  <button data-page="savings"><span>♧</span><span>Savings</span></button>
-  <button data-page="money"><span>▤</span><span>Money</span></button>
+  <button data-page="savings"><span>🌱</span><span>Savings</span></button>
+  <button data-page="money"><span>📄</span><span>Money</span></button>
 </nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -262,12 +279,14 @@
     $('showSignIn').className='btn '+(mode==='signin'?'primary':'ghost');
     $('showSignUp').className='btn '+(mode==='signup'?'primary':'ghost');
     $('authConfirmWrap').style.display=mode==='signup'?'grid':'none';
+    $('authNameFields').style.display=mode==='signup'?'grid':'none';
+    $('authFirstName').required=mode==='signup';$('authLastName').required=mode==='signup';
     $('authConfirm').required=mode==='signup';
     $('authPassword').autocomplete=mode==='signup'?'new-password':'current-password';
   }
   async function openPrivateApp(user){
     currentUser=user;
-    $('signedInEmail').textContent=user.email||'Signed in';
+    // Email is intentionally kept inside My profile, not shown in the top bar.
     $('authScreen').hidden=true;$('appRoot').hidden=false;
     cloudReady=false;state=defaultState();
     const {data,error}=await supabaseClient.from('user_finance_state').select('state').eq('user_id',user.id).maybeSingle();
@@ -315,7 +334,7 @@
   function setToast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(setToast.timer);setToast.timer=setTimeout(()=>el.classList.remove('show'),2400)}
   function openDialog(id){$(id).showModal()}
   function closeDialog(id){$(id).close()}
-  function showPage(name){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+name));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===name));const titles={overview:'Overview',transactions:'Transactions',budgets:'Budgets',savings:'Savings goals',fees:'Fees to pay',converter:'Currency converter',money:'My money',profile:'Your profile'};const h=$('greeting');h.textContent=name==='overview'?'Good evening 👋':titles[name];$('dateLine').textContent=name==='overview'?'Here’s your financial snapshot.':({transactions:'Review your income and spending.',budgets:'Give every category a clear spending limit.',savings:'Every goal starts with a small step.',fees:'Keep upcoming payments organised.',converter:'Quick conversions across seven currencies.',money:'Your income, available money, and upcoming payments.',profile:'Manage your email, password, and account details.'}[name]);window.scrollTo({top:0,behavior:'smooth'});render()}
+  function showPage(name){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+name));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===name));const titles={overview:'',transactions:'Transactions',budgets:'Budgets',savings:'Savings goals',fees:'Fees to pay',converter:'Currency converter',money:'My money',profile:'Your profile',settings:'Settings'};const h=$('greeting');if(name==='overview')refreshGreeting();else h.textContent=titles[name]||name;$('dateLine').textContent=name==='overview'?'Here’s your financial snapshot.':({transactions:'Review your income and spending.',budgets:'Give every category a clear spending limit.',savings:'Every goal starts with a small step.',fees:'Keep upcoming payments organised.',converter:'Quick conversions across seven currencies.',money:'Your income, available money, and upcoming payments.',profile:'Manage your email, password, and account details.',settings:'Choose your preferred appearance and account options.'}[name]);$('profileMenu').classList.remove('open');$('profileBtn').setAttribute('aria-expanded','false');window.scrollTo({top:0,behavior:'smooth'});render()}
   function txHTML(t){const income=t.type==='Income';return `<div class="transaction"><div class="tx-icon ${income?'income':''}">${icons[t.category]||'↗'}</div><div class="tx-main"><strong>${esc(t.name)} ${t.isFee?'<span class="status paid">PAID FEE</span>':''}</strong><span>${esc(t.category)} · ${dateLabel(t.date)} · ${esc(t.currency)}</span></div><div class="tx-amount ${income?'positive':'negative'}">${income?'+':'−'}${money(t.amount,t.currency)}<small>${income?'Income':'Expense'}</small></div>${t.isFee?'':`<button class="btn small ghost danger" data-delete-tx="${esc(t.id)}" aria-label="Delete ${esc(t.name)}">✕</button>`}</div>`}
   function renderTransactions(){const all=[...state.transactions,...paidFees().map(f=>({id:'fee-'+f.id,name:f.name,category:f.category||'Bills',amount:f.amount,currency:f.currency,type:'Expense',date:f.paidDate||todayISO(),isFee:true}))].sort((a,b)=>(b.date||'').localeCompare(a.date||''));const q=$('txSearch').value.trim().toLowerCase();const filtered=all.filter(t=>(txFilter==='All'||t.type===txFilter)&&(`${t.name} ${t.category} ${t.currency}`).toLowerCase().includes(q));$('transactionsList').innerHTML=filtered.length?filtered.map(txHTML).join(''):'<div class="empty">No matching transactions yet.</div>';$('txIncomeTotal').textContent=displayMoney(allIncomeMYR());$('txExpenseTotal').textContent=displayMoney(allExpenseMYR());}
   function renderBudgets(){const total=budgetTotal(),spent=sum(state.budgets.map(b=>categorySpent(b.name)));$('budgetTotal').textContent=displayMoney(total);$('budgetOverallBar').style.width=Math.min(100,total?spent/total*100:0)+'%';$('budgetOverallFoot').textContent=`${displayMoney(spent)} spent · ${displayMoney(Math.max(0,total-spent))} remaining`;const markup=state.budgets.map(b=>{const used=categorySpent(b.name),pct=b.limit?used/b.limit*100:0;return `<div class="card"><div class="card-head"><div><h3>${esc(b.name)}</h3><div class="subtle">Monthly spending limit</div></div><span class="stat-icon">${icons[b.name]||'◴'}</span></div><div style="font-size:24px;font-weight:800;margin:8px 0">${displayMoney(used)} <span class="subtle" style="font-size:12px;font-weight:500">/ ${money(b.limit,'MYR')}</span></div><div class="progress"><span style="width:${Math.min(100,pct)}%;background:${pct>100?'var(--red)':b.color||'var(--mint)'}"></span></div><div class="subtle" style="margin-top:8px;color:${pct>100?'var(--red)':'var(--muted)'}">${pct>100?`Over budget by ${displayMoney(used-b.limit)}`:`${displayMoney(b.limit-used)} remaining`} · ${Math.round(pct)}%</div><div class="form-group" style="margin-top:13px"><label>Monthly limit (MYR)</label><input type="number" min="0" step=".01" value="${b.limit}" data-budget-limit="${esc(b.id)}"></div></div>`}).join('');$('budgetsList').innerHTML=markup||'<div class="empty">Add a budget category to get started.</div>';renderOverviewBudgets()}
@@ -352,15 +371,31 @@
       return `<div class="notice-item"><span class="notice-symbol">!</span><div><strong>${esc(f.name)} · ${money(f.amount,f.currency)}</strong><small>${dueLabel} · ${dateLabel(f.due)}</small></div></div>`;
     }).join(''):'<div class="empty" style="padding:18px 4px">No unpaid fees due in the next 3 days.</div>';
   }
+  function accountName(){
+    const meta=currentUser?.user_metadata||{};
+    const full=[meta.first_name,meta.last_name].filter(Boolean).join(' ').trim()||meta.full_name||meta.name;
+    if(full&&String(full).trim())return String(full).trim();
+    const email=currentUser?.email||'';return email?email.split('@')[0].replace(/[._-]+/g,' ').replace(/\b\w/g,c=>c.toUpperCase()):'there';
+  }
+  function refreshGreeting(){
+    const hour=new Date().getHours();
+    const part=hour<12?'Good morning':hour<18?'Good afternoon':'Good evening';
+    const name=accountName();
+    $('greeting').textContent=`${part}, ${name} 👋`;
+    $('profileGreeting').textContent=`Hi, ${name.split(' ')[0]||'there'}`;
+    const now=new Date();$('dateLine').textContent='Here’s your financial snapshot · '+now.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'});
+  }
   function renderProfile(){
     const email=currentUser?.email||'';
-    const initial=(email.split('@')[0]||'W').trim().charAt(0).toUpperCase()||'W';
-    $('profileAvatar').textContent=initial;$('profileAvatarLarge').textContent=initial;
-    $('profileGreeting').textContent='Hi, Warren';
-    $('profileName').textContent='Warren';
+    const name=accountName();
+    const initial=(name.trim().charAt(0)||email.trim().charAt(0)||'W').toUpperCase();
+    $('profileAvatar').textContent=initial;$('profileAvatarLarge').textContent=initial;$('menuAvatar').textContent=initial;
+    $('profileName').textContent=name;$('menuName').textContent=name;
+    $('profileGreeting').textContent=`Hi, ${name.split(' ')[0]||'there'}`;
     $('profileEmailSummary').textContent=email;$('profileEmail').value=email;
     const created=currentUser?.created_at?new Date(currentUser.created_at):null;
-    $('accountCreated').textContent=created&&!Number.isNaN(created.getTime())?created.toLocaleDateString('en-MY',{day:'numeric',month:'long',year:'numeric'}):'Unavailable';
+    $('accountCreated').textContent=created&&!Number.isNaN(created.getTime())?created.toLocaleDateString(undefined,{day:'numeric',month:'long',year:'numeric'}):'Unavailable';
+    refreshGreeting();
   }
   function animateMoney(el,newText){
     if(!el)return;
@@ -386,7 +421,9 @@
     $('authSubmit').disabled=true;$('authSubmit').textContent=authMode==='signin'?'Signing in…':'Creating account…';
     try{
       if(authMode==='signup'){
-        const {data,error}=await supabaseClient.auth.signUp({email,password});
+        const firstName=$('authFirstName').value.trim(),lastName=$('authLastName').value.trim();
+        if(!firstName||!lastName){showAuthError('Please enter both your first name and last name.');return}
+        const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{first_name:firstName,last_name:lastName,full_name:`${firstName} ${lastName}`}}});
         if(error)throw error;
         if(data.session?.user){await openPrivateApp(data.session.user)}
         else{showAuthError('Account created. Check your email for the confirmation link, then sign in.')}
@@ -398,15 +435,21 @@
     }catch(err){showAuthError(err.message||'Authentication failed.')}
     finally{$('authSubmit').disabled=false;$('authSubmit').textContent=authMode==='signin'?'Sign in':'Create account'}
   });
-  $('signOutBtn').addEventListener('click',async()=>{if(supabaseClient)await supabaseClient.auth.signOut();currentUser=null;cloudReady=false;$('appRoot').hidden=true;$('authScreen').hidden=false;setAuthMode('signin')});
+  // Sign-out is wired to the profile menu and profile page below.
 
-  $('profileBtn').addEventListener('click',()=>{ $('notificationPanel').classList.remove('open');showPage('profile') });
+  function setTheme(theme){const next=theme==='dark'?'dark':'light';document.documentElement.setAttribute('data-theme',next);try{localStorage.setItem('cashmyflow-theme',next)}catch(e){}$('themeStatus').textContent=`${next==='dark'?'Dark':'Light'} mode is active.`;$('lightThemeBtn').classList.toggle('selected',next==='light');$('darkThemeBtn').classList.toggle('selected',next==='dark');$('menuThemeBtn').innerHTML=next==='dark'?'☀️ &nbsp; Switch to light mode <span class=\"theme-symbol\">☀</span>':'🌙 &nbsp; Switch to dark mode <span class=\"theme-symbol\">☾</span>';}
+  try{setTheme(localStorage.getItem('cashmyflow-theme')||'light')}catch(e){setTheme('light')}
+  $('profileBtn').addEventListener('click',()=>{ $('notificationPanel').classList.remove('open');const menu=$('profileMenu'),open=!menu.classList.contains('open');menu.classList.toggle('open',open);$('profileBtn').setAttribute('aria-expanded',String(open)); });
+  document.querySelectorAll('[data-profile-action]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.profileAction)));
+  $('menuThemeBtn').addEventListener('click',()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
+  $('lightThemeBtn').addEventListener('click',()=>setTheme('light'));$('darkThemeBtn').addEventListener('click',()=>setTheme('dark'));
+  $('menuSignOutBtn').addEventListener('click',signOut);
+  document.addEventListener('click',e=>{if(!e.target.closest('.account-area')){$('profileMenu').classList.remove('open');$('profileBtn').setAttribute('aria-expanded','false')}});
   $('notificationBtn').addEventListener('click',()=>{const panel=$('notificationPanel'),open=!panel.classList.contains('open');panel.classList.toggle('open',open);$('notificationBtn').setAttribute('aria-expanded',String(open));renderNotifications()});
   $('viewFeesBtn').addEventListener('click',()=>{$('notificationPanel').classList.remove('open');showPage('fees')});
   document.addEventListener('click',e=>{if(!e.target.closest('.notification-wrap')){$('notificationPanel').classList.remove('open');$('notificationBtn').setAttribute('aria-expanded','false')}});
   async function signOut(){if(supabaseClient)await supabaseClient.auth.signOut();currentUser=null;cloudReady=false;$('appRoot').hidden=true;$('authScreen').hidden=false;setAuthMode('signin')}
   $('profileSignOutBtn').addEventListener('click',signOut);
-  $('signOutBtn').addEventListener('click',signOut);
   $('changeEmailBtn').addEventListener('click',async()=>{
     const email=$('newEmail').value.trim();$('profileMessage').textContent='';
     if(!email){$('profileMessage').textContent='Enter your new email address first.';return}
@@ -455,7 +498,7 @@
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
     window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
   }
-  const now=new Date();$('dateLine').textContent='Here’s your financial snapshot · '+now.toLocaleDateString('en-MY',{weekday:'long',day:'numeric',month:'long'});$('feeDue').value=todayISO();initialiseAuth();
+  $('feeDue').value=todayISO();setInterval(()=>{if(currentUser)refreshGreeting()},60000);initialiseAuth();
 })();
 </script>
 </div>
