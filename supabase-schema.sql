@@ -1,5 +1,3 @@
--- CashMyFlow @ Pursuft: private per-user finance state
--- Run this in Supabase Dashboard > SQL Editor > New query.
 create table if not exists public.user_finance_state (
   user_id uuid primary key references auth.users(id) on delete cascade,
   state jsonb not null default jsonb_build_object(
