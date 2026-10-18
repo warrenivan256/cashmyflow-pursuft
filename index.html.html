@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0b0e14">
+<meta name="description" content="CashMyFlow @ Pursuft — track spending, manage allowance, organise bills, save goals and convert currencies.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CashMyFlow">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="cashmyflow-logo.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>CashMyFlow @ Pursuft</title>
+<style>
+:root{--bg:#0b0e14;--panel:#111722;--panel2:#151c28;--panel3:#1a2230;--line:#293344;--text:#f1f5fa;--muted:#91a0b5;--mint:#9be7c4;--mint2:#d1fae5;--purple:#b1a5ff;--red:#ff9dab;--amber:#f4c982;--blue:#8bb8ff;--radius:18px;--shadow:0 16px 40px #0002}
+*{box-sizing:border-box}dialog{padding:0;border:0;background:transparent;color:inherit;max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);overflow:visible}dialog::backdrop{background:rgba(4,7,12,.76);backdrop-filter:blur(5px)}dialog form.card{margin:0;max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);overflow:auto;box-shadow:0 24px 70px rgba(0,0,0,.5)}body{margin:0;background:radial-gradient(ellipse at 75% -20%,#1b2940 0,transparent 42%),var(--bg);color:var(--text);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--mint);outline-offset:2px}button:disabled{opacity:.45;cursor:not-allowed}.app{display:grid;grid-template-columns:245px minmax(0,1fr);min-height:100vh;max-width:1600px;margin:auto}.sidebar{padding:27px 17px;border-right:1px solid var(--line);background:#0d1119e8;display:flex;flex-direction:column;gap:26px}.brand{display:flex;align-items:center;gap:11px;padding:0 9px}.brand-icon{width:43px;height:43px;border-radius:14px;object-fit:cover;display:block;flex:0 0 auto;box-shadow:0 5px 18px #00d27b20}.brand-name{font-size:20px;font-weight:800;letter-spacing:-.6px}.eyebrow{color:var(--muted);font-size:10px;letter-spacing:1.5px;font-weight:800}.nav-label{font-size:10px;color:#718097;letter-spacing:1.4px;font-weight:800;padding:0 11px;margin-bottom:7px}.nav{display:grid;gap:5px}.nav-btn{border:1px solid transparent;background:transparent;color:#aeb9c9;text-align:left;padding:12px 13px;border-radius:12px;display:flex;align-items:center;gap:12px;font-weight:650;transition:.18s}.nav-btn:hover{background:#171f2d;color:white}.nav-btn.active{background:var(--mint2);color:#153b2d}.nav-btn .ico{width:20px;text-align:center;font-size:17px}.side-bottom{margin-top:auto}.demo-card{padding:15px;border:1px solid #30483e;background:#13211c;border-radius:15px}.demo-card strong{display:block;color:#d7f6e7;margin:5px 0}.demo-card p{font-size:12px;color:#a8bdaf;margin:0}.main{min-width:0;padding:26px clamp(16px,3vw,42px) 44px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:30px}.welcome h1{font-size:clamp(23px,3vw,31px);line-height:1.2;letter-spacing:-1px;margin:0 0 6px}.welcome p{margin:0;color:var(--muted)}.top-actions{display:flex;align-items:center;gap:10px}.select,.field,input,textarea{background:#111925;border:1px solid #303b4d;color:var(--text);border-radius:10px;padding:11px 12px;width:100%;min-width:0}.select{width:auto}.icon-btn,.btn{border:1px solid var(--line);background:#1b2331;color:#eaf0f8;border-radius:11px;padding:10px 14px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.18s}.btn:hover,.icon-btn:hover{filter:brightness(1.12);transform:translateY(-1px)}.btn.primary{background:var(--mint);border-color:var(--mint);color:#153b2d}.btn.ghost{background:transparent}.btn.danger{color:var(--red)}.btn.small{padding:7px 10px;font-size:12px}.page{display:none;animation:fade .22s ease}.page.active{display:block}@keyframes fade{from{opacity:.3;transform:translateY(4px)}to{opacity:1;transform:none}}.page-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin-bottom:20px}.page-heading h2{font-size:23px;letter-spacing:-.5px;margin:0 0 5px}.page-heading p{margin:0;color:var(--muted)}.grid{display:grid;gap:16px}.stats{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:17px}.dashboard-stats{grid-template-columns:repeat(4,minmax(0,1fr))}.dashboard-stats .card{padding:17px}.dashboard-stats .stat-value{font-size:clamp(21px,2.2vw,28px);margin:8px 0 3px}.dashboard-stats .stat-icon{background:#1e3d30;color:var(--mint)}.dashboard-stats .expense-card .stat-icon{background:#40272d;color:var(--red)}.dashboard-stats .fees-card .stat-icon{background:#2d2646;color:var(--purple)}.dashboard-stats .savings-card .stat-icon{background:#3a321d;color:var(--amber)}.card{border:1px solid var(--line);background:linear-gradient(145deg,#151c28,#111722);border-radius:var(--radius);padding:20px;min-width:0;box-shadow:var(--shadow)}.card.mint{background:linear-gradient(110deg,#142d25,#101a1b);border-color:#2d5141}.balance-card{padding:24px;background:linear-gradient(105deg,#132820,#101a1c)!important}.balance-card .balance-foot{max-width:600px}.card-label{font-size:12px;color:#a5b2c5;display:flex;align-items:center;gap:8px}.stat-value{font-size:clamp(23px,3vw,31px);font-weight:800;letter-spacing:-1px;margin:10px 0 7px;overflow-wrap:anywhere}.stat-foot{font-size:12px;color:var(--muted)}.positive{color:var(--mint)}.negative{color:var(--red)}.purple{color:var(--purple)}.blue{color:var(--blue)}.stat-icon{width:35px;height:35px;border-radius:11px;background:#233a31;display:grid;place-items:center;font-size:17px;margin-left:auto}.two-col{grid-template-columns:minmax(0,1.2fr) minmax(290px,.8fr);margin-bottom:17px}.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:17px}.card-head h3,.section-title{font-size:16px;margin:0;font-weight:750}.subtle{color:var(--muted);font-size:12px}.link-btn{background:none;border:0;color:var(--mint);font-weight:700;padding:5px}.balance-card{position:relative;overflow:hidden}.balance-card:after{content:"";position:absolute;width:190px;height:190px;border:1px solid #9be7c41e;border-radius:50%;right:-65px;top:-90px;box-shadow:0 0 0 25px #9be7c40a,0 0 0 55px #9be7c407;pointer-events:none}.balance-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.balance-row .stat-value{font-size:clamp(31px,4vw,42px);margin:11px 0}.balance-foot{display:flex;gap:22px;flex-wrap:wrap;margin-top:18px;padding-top:16px;border-top:1px solid #304139}.balance-foot span{display:block;color:#a5b6ac;font-size:11px}.balance-foot strong{display:block;font-size:15px;margin-top:4px}.chart{display:flex;align-items:flex-end;gap:clamp(5px,1.2vw,13px);height:155px;padding-top:12px}.bar-wrap{flex:1;display:flex;align-items:center;flex-direction:column;justify-content:flex-end;height:100%;gap:8px;min-width:0}.bar{width:min(29px,78%);border-radius:7px 7px 3px 3px;background:linear-gradient(180deg,#9be7c4,#4f9b7b);min-height:4px;transition:height .3s}.bar-label{font-size:10px;color:#8f9db0}.legend{display:flex;gap:15px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-top:16px}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px}.list{display:grid;gap:0}.transaction{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #242d3b}.transaction:last-child{border-bottom:0}.tx-icon{width:41px;height:41px;display:grid;place-items:center;border-radius:13px;background:#222c3c;font-size:17px;flex-shrink:0}.tx-icon.income{background:#1d3b30}.tx-main{min-width:0;flex:1}.tx-main strong{display:block;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tx-main span{display:block;color:var(--muted);font-size:11px;margin-top:3px}.tx-amount{text-align:right;font-weight:750;white-space:nowrap}.tx-amount small{display:block;font-weight:500;color:var(--muted);font-size:10px;margin-top:3px}.progress{height:7px;border-radius:20px;background:#30394a;overflow:hidden}.progress span{height:100%;display:block;border-radius:20px;background:var(--mint)}.budget-row{padding:12px 0;border-bottom:1px solid #252d3b}.budget-row:last-child{border:0}.budget-top{display:flex;justify-content:space-between;gap:10px;margin-bottom:9px}.budget-top strong{font-size:13px}.budget-top span{color:var(--muted);font-size:12px}.budget-top .over{color:var(--red)}.goal-card{display:grid;gap:12px}.goal-icon{width:44px;height:44px;border-radius:13px;background:#292640;display:grid;place-items:center;color:var(--purple);font-size:20px}.goal-top{display:flex;gap:12px;align-items:center}.goal-top>div:nth-child(2){flex:1;min-width:0}.goal-top strong{display:block}.goal-top small{color:var(--muted)}.goal-pct{font-weight:800;color:var(--mint)}.goal-actions{display:flex;gap:8px}.goal-actions input{flex:1}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.form-group{display:grid;gap:6px}.form-group label{font-size:12px;color:#aeb9c9;font-weight:650}.form-grid .full{grid-column:1/-1}.form-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:17px}.filters{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:13px}.filters input{flex:1;min-width:170px}.pill{border:1px solid var(--line);background:#141b27;color:#aab6c7;border-radius:10px;padding:9px 12px;font-weight:700}.pill.active{background:#d1fae5;color:#153b2d;border-color:#d1fae5}.table-card{padding:5px 18px}.fee-item{display:flex;align-items:center;gap:13px;padding:16px 2px;border-bottom:1px solid #293242}.fee-item:last-child{border-bottom:0}.check-wrap{position:relative;display:grid;place-items:center;flex-shrink:0}.fee-check{appearance:none;width:22px;height:22px;border:1.5px solid #65758d;border-radius:7px;background:#101722;cursor:pointer;margin:0}.fee-check:checked{background-color:var(--mint);border-color:var(--mint);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m3 8 3.2 3.2L13 4.5' fill='none' stroke='%23153b2d' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-position:center;background-repeat:no-repeat;background-size:14px 14px}.fee-main{flex:1;min-width:0}.fee-main strong{display:block}.fee-main small{color:var(--muted);display:block;margin-top:3px}.fee-main.paid strong{text-decoration:line-through;color:#9aa99f}.fee-right{text-align:right;white-space:nowrap}.fee-right strong{display:block}.status{display:inline-flex;align-items:center;padding:4px 8px;border-radius:20px;font-size:10px;font-weight:800;margin-top:4px}.status.paid{background:#203d31;color:var(--mint)}.status.pending{background:#3b3021;color:var(--amber)}.fee-total{display:flex;justify-content:space-between;gap:12px;align-items:center}.converter-box{max-width:760px;margin:auto}.convert-field{border:1px solid #303b4d;background:#111925;border-radius:14px;padding:15px}.convert-field label{display:block;color:var(--muted);font-size:12px;margin-bottom:8px}.convert-row{display:flex;gap:12px;align-items:center}.convert-row input{font-size:24px;font-weight:750;border:0;background:transparent;padding:4px 0;flex:1;min-width:0;outline:none}.convert-row select{max-width:190px}.swap-row{display:flex;justify-content:center;margin:-4px 0;position:relative;z-index:1}.swap{border:4px solid #111722;border-radius:50%;width:44px;height:44px;background:#293448;color:var(--mint);font-size:19px}.result-box{background:#14251e;border:1px solid #315541;border-radius:15px;padding:19px;margin-top:16px}.result-box .big{font-size:clamp(28px,5vw,38px);font-weight:850;color:var(--mint);letter-spacing:-1px;overflow-wrap:anywhere}.result-box p{color:#a9c0b2;font-size:12px;margin:4px 0 0}.quick-currencies{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:17px}.quick-currencies button{text-align:left;background:#171e2a;border:1px solid #2b3444;color:var(--text);border-radius:12px;padding:12px}.quick-currencies strong,.quick-currencies span{display:block}.quick-currencies span{color:var(--muted);font-size:11px;margin-top:4px}.coach-intro{display:flex;gap:15px;align-items:flex-start}.sparkle{width:49px;height:49px;flex-shrink:0;border-radius:15px;background:#263d32;display:grid;place-items:center;color:var(--mint);font-size:23px}.prompt-list{display:grid;gap:8px;margin:14px 0}.prompt{width:100%;text-align:left;background:#171e2a;border:1px solid #2b3444;color:#dce5f1;border-radius:12px;padding:12px 14px}.prompt:hover{border-color:#5c7a6c}.advice-output{white-space:pre-wrap;color:#d8e3ed;line-height:1.75}.notice{padding:12px 14px;border-radius:12px;background:#17231f;border:1px solid #2b5142;color:#b7ccbf;font-size:12px}.empty{padding:30px;text-align:center;color:var(--muted)}.toast{position:fixed;bottom:20px;right:20px;background:#d1fae5;color:#153b2d;padding:12px 17px;border-radius:12px;font-weight:750;box-shadow:var(--shadow);opacity:0;transform:translateY(10px);transition:.2s;pointer-events:none;z-index:10}.toast.show{opacity:1;transform:none}.mobile-brand{display:none}
+@media(max-width:1000px){.app{grid-template-columns:205px minmax(0,1fr)}.sidebar{padding:22px 12px}.main{padding:23px 20px}.two-col{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.dashboard-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat-value{font-size:25px}}
+@media(max-width:720px){.app{display:block;padding-bottom:76px}.sidebar{display:none}.main{padding:20px 14px 30px}.topbar{align-items:flex-start;margin-bottom:23px}.top-actions{gap:6px}.top-actions .select{max-width:118px;padding:9px 7px;font-size:12px}.top-actions .icon-btn{display:none}.stats{grid-template-columns:1fr 1fr;gap:10px}.dashboard-stats{grid-template-columns:1fr 1fr}.stats .card:first-child{grid-column:auto}.card{padding:16px}.two-col{gap:12px}.mobile-brand{display:flex;align-items:center;gap:8px;margin-bottom:18px}.mobile-brand .brand-icon{width:34px;height:34px;border-radius:10px}.mobile-brand .brand-name{font-size:17px}.bottom-nav{display:flex!important;position:fixed;z-index:5;bottom:0;left:0;right:0;justify-content:space-around;padding:8px 4px calc(8px + env(safe-area-inset-bottom));background:#0e131dee;backdrop-filter:blur(16px);border-top:1px solid var(--line)}.bottom-nav button{display:grid;justify-items:center;gap:3px;border:0;background:transparent;color:#9ba8bc;font-size:10px;padding:5px 6px;min-width:0}.bottom-nav button span:first-child{font-size:18px}.bottom-nav button.active{color:var(--mint)}.page-heading{align-items:flex-start}.page-heading .btn{font-size:12px;padding:9px}.quick-currencies{grid-template-columns:repeat(2,minmax(0,1fr))}.convert-row{gap:5px}.convert-row select{max-width:135px;font-size:12px;padding:9px 5px}.convert-row input{font-size:21px}.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}.welcome h1{font-size:24px}.welcome p{font-size:12px}.fee-item{gap:9px}.fee-right strong{font-size:13px}.table-card{padding:4px 13px}}
+@media(min-width:721px){.bottom-nav{display:none!important}}
+
+.auth-screen{min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,460px);align-items:center;gap:clamp(28px,7vw,100px);padding:clamp(22px,5vw,72px);background:radial-gradient(ellipse at 12% 38%,#063f2b88 0,transparent 36%),radial-gradient(ellipse at 78% -20%,#1b2940 0,transparent 42%),var(--bg);max-width:1440px;margin:auto}
+.auth-showcase{max-width:560px;padding:8px 0}
+.auth-showcase .hero-logo{width:min(250px,58vw);height:auto;display:block;border-radius:42px;box-shadow:0 25px 75px #00c87916;margin-bottom:26px}
+.auth-showcase h2{font-size:clamp(38px,5vw,68px);line-height:1.02;letter-spacing:-2.7px;margin:0 0 16px}
+.auth-showcase h2 span{color:var(--mint)}
+.auth-showcase p{max-width:470px;color:#aab8c9;font-size:16px;line-height:1.8;margin:0}
+.auth-feature-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.auth-feature{border:1px solid #294538;background:#10231caa;color:#c9f5de;border-radius:999px;padding:9px 13px;font-size:12px;font-weight:650}
+.auth-card{width:100%;padding:clamp(22px,3vw,34px);border:1px solid #2a3b43;border-radius:24px;background:linear-gradient(145deg,#111820f7,#0c1118f7);box-shadow:0 25px 80px #0007}
+.auth-brand{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.auth-brand .brand-icon{width:54px;height:54px;border-radius:16px}
+.auth-card h1{font-size:27px;line-height:1.2;letter-spacing:-.7px;margin:0 0 8px}
+.auth-card p{color:var(--muted);margin:0 0 20px}
+.auth-tabs{display:flex;gap:8px;margin:0 0 18px}
+.auth-tabs button{flex:1}
+.auth-error{display:none;background:#321e26;border:1px solid #633744;color:#ffb8c4;border-radius:10px;padding:10px 12px;margin:12px 0;font-size:12px}
+.auth-help{font-size:12px;color:var(--muted);margin-top:14px}
+.auth-help a{color:var(--mint)}
+.user-chip{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#appRoot[hidden],#authScreen[hidden]{display:none!important}
+@media(max-width:800px){.auth-screen{grid-template-columns:1fr;justify-items:center;gap:24px;padding:24px 16px 36px}.auth-showcase{text-align:center;max-width:460px}.auth-showcase .hero-logo{width:92px;border-radius:22px;margin:0 auto 12px}.auth-showcase h2{font-size:32px;letter-spacing:-1.2px;margin-bottom:8px}.auth-showcase p{font-size:13px;line-height:1.6}.auth-feature-row{display:none}.auth-card{max-width:460px}.auth-brand{justify-content:center}.auth-brand>div:last-child{text-align:left}}
+@media(max-width:520px){.auth-card{padding:20px}.auth-screen{padding-top:26px}.auth-showcase .hero-logo{width:72px;border-radius:18px}.auth-showcase h2{font-size:27px}}
+
+
+/* Cleaner navigation, account controls and gentle number motion */
+.workspace-nav .nav-btn{padding:11px 12px;border-radius:13px;gap:11px}
+.nav-btn .ico{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:#192331;color:#b9c8d9;font-size:17px;flex:0 0 auto}
+.nav-btn.active .ico{background:#b4f0d5;color:#174331}
+.nav-btn.active{box-shadow:inset 3px 0 0 #49bd8b}
+.account-area{display:flex;align-items:center;gap:8px;position:relative}
+.profile-trigger{display:flex;align-items:center;gap:9px;border:1px solid transparent;background:transparent;color:var(--text);padding:5px 9px 5px 5px;border-radius:999px;text-align:left}
+.profile-trigger:hover{background:#18212e;border-color:var(--line)}
+.avatar{width:38px;height:38px;border-radius:50%;background:#dce1e6;color:#364152;display:grid;place-items:center;font-weight:800;font-size:15px;flex-shrink:0}
+.profile-trigger strong{display:block;font-size:13px}
+.profile-trigger small{display:block;color:var(--muted);font-size:11px}
+.notification-wrap{position:relative}
+.notification-btn{width:42px;height:42px;padding:0;position:relative;border-radius:50%;background:transparent;border:1px solid transparent;color:var(--text);font-size:20px}
+.notification-btn:hover{background:#18212e;border-color:var(--line)}
+.notification-count{position:absolute;right:1px;top:0;min-width:17px;height:17px;padding:0 4px;border-radius:99px;background:#f0bd68;color:#30200a;font-size:10px;font-weight:850;display:grid;place-items:center}
+.notification-panel{display:none;position:absolute;right:0;top:48px;width:min(340px,calc(100vw - 28px));z-index:20;background:#111923;border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 20px 50px #0009}
+.notification-panel.open{display:block}
+.notification-panel h3{font-size:15px;margin:0 0 10px}
+.notice-item{padding:11px 0;border-top:1px solid #273140;display:flex;gap:10px;align-items:flex-start}
+.notice-item:first-of-type{border-top:0}
+.notice-item .notice-symbol{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:#382e20;color:var(--amber);flex-shrink:0}
+.notice-item strong{display:block;font-size:12px}
+.notice-item small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.profile-card{max-width:760px}
+.profile-card .profile-avatar-large{width:58px;height:58px;font-size:21px}
+.profile-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.profile-note{font-size:12px;color:var(--muted);margin-top:10px}
+.money-animated{font-variant-numeric:tabular-nums}
+@media(max-width:720px){
+ .topbar{align-items:center;gap:8px}
+ .top-actions{gap:5px;flex-wrap:nowrap}
+ .top-actions .select{max-width:98px;min-width:82px;padding:9px 4px;font-size:11px}
+ .account-area{gap:2px}
+ .profile-trigger{padding:3px}
+ .profile-trigger .profile-copy{display:none}
+ .avatar{width:34px;height:34px}
+ .notification-btn{width:36px;height:36px}
+ .top-actions .account-area{display:flex}
+ .top-actions #resetBtn{display:none}
+ .top-actions #signedInEmail{display:none}
+ .page-heading p{font-size:12px;line-height:1.5}
+ .nav-btn .ico{width:31px;height:31px}
+}
+
+</style>
+</head>
+<body>
+<section id="authScreen" class="auth-screen">
+  <div class="auth-showcase">
+    <img class="hero-logo" src="./cashmyflow-logo.png" alt="CashMyFlow logo">
+    <h2>Your money.<br><span>Your flow.</span></h2>
+    <p>A calmer way to track spending, plan budgets, manage upcoming fees and grow your savings — all in one place.</p>
+    <div class="auth-feature-row"><span class="auth-feature">✦ Personal dashboard</span><span class="auth-feature">↗ Savings goals</span><span class="auth-feature">◈ Multi-currency</span></div>
+  </div>
+  <div class="auth-card">
+    <div class="auth-brand"><img class="brand-icon" src="./cashmyflow-logo.png" alt=""><div><div class="brand-name">CashMyFlow</div><div class="eyebrow">@ P U R S U F T</div></div></div>
+    <h1 id="authTitle">Welcome back</h1>
+    <p id="authSubtitle">Sign in to continue managing your finances.</p>
+    <div class="auth-tabs" id="authTabs">
+      <button class="btn primary" type="button" id="showSignIn">Sign in</button>
+      <button class="btn ghost" type="button" id="showSignUp">Create account</button>
+    </div>
+    <form id="authForm">
+      <div class="form-group" style="margin-bottom:12px"><label for="authEmail">Email address</label><input id="authEmail" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+      <div class="form-group" style="margin-bottom:12px"><label for="authPassword">Password</label><input id="authPassword" type="password" autocomplete="current-password" required minlength="8" placeholder="At least 8 characters"></div>
+      <div class="form-group" id="authConfirmWrap" style="display:none;margin-bottom:12px"><label for="authConfirm">Confirm password</label><input id="authConfirm" type="password" autocomplete="new-password" minlength="8" placeholder="Enter password again"></div>
+      <button class="btn primary" id="authSubmit" type="submit" style="width:100%;margin-top:4px">Sign in</button>
+    </form>
+    <div class="auth-error" id="authError" role="alert"></div>
+    <div class="auth-help" id="authHelp">New to CashMyFlow? Choose <strong>Create account</strong>. Your starting balance will be RM 0.00.</div>
+  </div>
+</section>
+<div id="appRoot" hidden>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><img class="brand-icon" src="./cashmyflow-logo.png" alt=""><div><div class="brand-name">CashMyFlow</div><div class="eyebrow">@ PURSUFT</div></div></div>
+  <div><div class="nav-label">WORKSPACE</div><nav class="nav workspace-nav" id="sideNav">
+    <button class="nav-btn active" data-page="overview"><span class="ico">▦</span>Overview</button>
+    <button class="nav-btn" data-page="transactions"><span class="ico">↔</span>Transactions</button>
+    <button class="nav-btn" data-page="budgets"><span class="ico">◴</span>Budgets</button>
+    <button class="nav-btn" data-page="savings"><span class="ico">♧</span>Savings goals</button>
+    <button class="nav-btn" data-page="fees"><span class="ico">☑</span>Fees to pay <span id="feeBadge" style="margin-left:auto;font-size:11px"></span></button>
+    <button class="nav-btn" data-page="money"><span class="ico">▤</span>My money</button>
+    <button class="nav-btn" data-page="converter"><span class="ico">⇄</span>Currency converter</button>
+  </nav></div>
+  <div class="side-bottom demo-card"><span style="font-size:18px">✦</span><strong>Small steps add up.</strong><p>Track your spending, build better habits, and make your money work for you.</p></div>
+  <div class="subtle" style="padding:0 9px">CashMyFlow @ Pursuft · v1.0</div>
+</aside>
+<main class="main">
+  <div class="mobile-brand"><img class="brand-icon" src="./cashmyflow-logo.png" alt=""><div class="brand-name">CashMyFlow</div><span class="eyebrow" style="margin-left:auto">PRIVATE ACCOUNT</span></div>
+  <header class="topbar"><div class="welcome"><h1 id="greeting">Good evening 👋</h1><p id="dateLine">Here’s your financial snapshot.</p></div><div class="top-actions"><select id="displayCurrency" class="select" aria-label="Display currency"><option value="MYR">🇲🇾 MYR · RM</option><option value="USD">🇺🇸 USD · $</option><option value="SGD">🇸🇬 SGD · S$</option><option value="EUR">🇪🇺 EUR · €</option><option value="GBP">🇬🇧 GBP · £</option><option value="AUD">🇦🇺 AUD · A$</option><option value="PHP">🇵🇭 PHP · ₱</option></select><span class="subtle" id="signedInEmail" style="max-width:180px;overflow-wrap:anywhere"></span><div class="account-area"><div class="notification-wrap"><button class="notification-btn" id="notificationBtn" aria-label="Notifications" aria-expanded="false" title="Upcoming fees">♧<span class="notification-count" id="notificationCount" hidden>0</span></button><div class="notification-panel" id="notificationPanel" role="region" aria-label="Upcoming payment notifications"><h3>Upcoming payments</h3><div id="notificationList"></div><button class="btn ghost small" id="viewFeesBtn" style="width:100%;margin-top:8px">View all fees</button></div></div><button class="profile-trigger" id="profileBtn" aria-label="Open profile"><span class="avatar" id="profileAvatar">W</span><span class="profile-copy"><strong id="profileGreeting">Hi, Warren</strong><small>My profile</small></span></button></div><button class="icon-btn" id="resetBtn" title="Clear account data">↻ Reset data</button></div></header>
+
+  <section class="page active" id="page-overview">
+    <div class="card mint balance-card" style="margin-bottom:17px"><div class="card-label">◉ &nbsp;Total balance <span class="subtle">· your account</span></div><div class="balance-row"><div class="stat-value" id="balanceValue">RM 0.00</div></div><div class="stat-foot">A simple snapshot of your money in one place.</div><div class="balance-foot"><div><span>Income logged</span><strong class="positive" id="incomeValue">RM 0.00</strong></div><div><span>Expenses logged</span><strong class="negative" id="expenseValue">RM 0.00</strong></div><div><span>Fees outstanding</span><strong id="outstandingValue">RM 0.00</strong></div></div></div>
+    <div class="grid stats dashboard-stats"><div class="card income-card"><div class="card-label">Income <span class="stat-icon">↗</span></div><div class="stat-value positive" id="incomeSummary">RM 0.00</div><div class="stat-foot">This month</div></div><div class="card expense-card"><div class="card-label">Expenses <span class="stat-icon">↘</span></div><div class="stat-value negative" id="expenseSummary">RM 0.00</div><div class="stat-foot">This month</div></div><div class="card fees-card"><div class="card-label">Fees <span class="stat-icon">◈</span></div><div class="stat-value" id="feesSummary">RM 0.00</div><div class="stat-foot">Marked paid</div></div><div class="card savings-card"><div class="card-label">Savings goals <span class="stat-icon">◎</span></div><div class="stat-value" id="savingsSummary">RM 0.00</div><div class="stat-foot" id="savingsSummaryFoot">Total saved</div></div></div>
+    <div class="grid two-col"><div class="card"><div class="card-head"><div><h3>Spending overview</h3><div class="subtle">Recent income and spending</div></div><button class="link-btn" data-go="transactions">View all →</button></div><div id="chart" class="chart"></div><div class="legend"><span><i class="dot" style="background:var(--mint)"></i>Tracked expenses</span><span><i class="dot" style="background:#354154"></i>Daily expense totals</span></div></div><div class="card"><div class="card-head"><div><h3>Budget progress</h3><div class="subtle">Stay within your limits</div></div><button class="link-btn" data-go="budgets">Manage →</button></div><div id="overviewBudgets"></div></div></div>
+    <div class="grid two-col"><div class="card"><div class="card-head"><div><h3>Recent transactions</h3><div class="subtle">Your latest money movements</div></div><button class="link-btn" data-go="transactions">See all →</button></div><div id="recentTransactions" class="list"></div><button class="btn ghost" style="width:100%;margin-top:10px" data-go="transactions">＋ Add a transaction</button></div><div class="card"><div class="card-head"><div><h3>Upcoming fees</h3><div class="subtle">Never lose track of a due date</div></div><button class="link-btn" data-go="fees">View all →</button></div><div id="upcomingFees"></div><div class="notice" style="margin-top:15px">✓ Tick a fee as paid to add it to expenses and update your budget automatically.</div></div></div>
+  </section>
+
+  <section class="page" id="page-transactions">
+    <div class="page-heading"><div><h2>Transactions</h2><p>Every income and expense, all in one place.</p></div><button class="btn primary" id="addTransactionBtn">＋ Add transaction</button></div>
+    <div class="grid stats" style="grid-template-columns:repeat(2,minmax(0,1fr))"><div class="card"><div class="card-label">Income logged</div><div class="stat-value positive" id="txIncomeTotal">RM 0.00</div></div><div class="card"><div class="card-label">Expenses logged <span class="subtle">including paid fees</span></div><div class="stat-value negative" id="txExpenseTotal">RM 0.00</div></div></div>
+    <div class="filters"><input id="txSearch" placeholder="Search transactions..." aria-label="Search transactions"><button class="pill active" data-filter="All">All</button><button class="pill" data-filter="Expense">Expenses</button><button class="pill" data-filter="Income">Income</button></div>
+    <div class="card table-card"><div id="transactionsList"></div></div>
+  </section>
+
+  <section class="page" id="page-budgets">
+    <div class="page-heading"><div><h2>Your budgets</h2><p>Set a limit, track your spending, and adjust as life changes.</p></div><button class="btn primary" id="addBudgetBtn">＋ Add category</button></div>
+    <div class="card mint" style="margin-bottom:16px"><div class="card-label">Total category budgets</div><div class="stat-value" id="budgetTotal">RM 0.00</div><div class="progress"><span id="budgetOverallBar" style="width:0%"></span></div><div class="stat-foot" style="margin-top:9px" id="budgetOverallFoot"></div></div>
+    <div id="budgetsList" class="grid" style="grid-template-columns:repeat(2,minmax(0,1fr))"></div>
+    <div class="card" style="margin-top:16px"><h3 class="section-title" style="margin-bottom:8px">Monthly budget planner</h3><p class="subtle">Distribute a monthly budget proportionally across your existing categories.</p><form id="plannerForm" class="form-grid"><div class="form-group"><label for="monthlyBudget">Monthly budget (MYR)</label><input id="monthlyBudget" type="number" min="1" step=".01" value="1200" required></div><div class="form-group" style="align-self:end"><button class="btn primary" type="submit">Distribute budget</button></div></form></div>
+  </section>
+
+  <section class="page" id="page-savings">
+    <div class="page-heading"><div><h2>Savings goals</h2><p>Turn big plans into small, achievable steps.</p></div><button class="btn primary" id="addGoalBtn">＋ Create goal</button></div>
+    <div class="card mint" style="margin-bottom:16px"><div class="card-label">Saved towards all goals</div><div class="stat-value" id="goalsTotal">RM 0.00</div><div class="progress"><span id="goalsBar" style="width:0%"></span></div><div class="stat-foot" id="goalsFoot" style="margin-top:9px"></div></div>
+    <div id="goalsList" class="grid" style="grid-template-columns:repeat(2,minmax(0,1fr))"></div>
+  </section>
+
+  <section class="page" id="page-fees">
+    <div class="page-heading"><div><h2>Fees to pay</h2><p>Tick a payment when you've paid it. CashMyFlow will count it as an expense.</p></div><button class="btn primary" id="addFeeBtn">＋ Add fee</button></div>
+    <div class="grid stats"><div class="card"><div class="card-label">Outstanding</div><div class="stat-value" id="feesOutstanding">RM 0.00</div><div class="stat-foot">Still to be paid</div></div><div class="card"><div class="card-label">Marked paid</div><div class="stat-value positive" id="feesPaidTotal">RM 0.00</div><div class="stat-foot">Automatically added to expenses</div></div><div class="card"><div class="card-label">Payments complete</div><div class="stat-value" id="feesPaidCount">0 / 0</div><div class="progress"><span id="feesProgress" style="width:0%"></span></div></div></div>
+    <div class="card" style="margin-bottom:16px"><div class="card-head"><div><h3>Payment checklist</h3><div class="subtle">Untick a fee to reverse its expense record.</div></div><div class="filters" style="margin:0"><button class="pill active" data-fee-filter="All">All</button><button class="pill" data-fee-filter="Pending">Pending</button><button class="pill" data-fee-filter="Paid">Paid</button></div></div><div id="feesList"></div><div class="notice" style="margin-top:15px">Important: checking a box records that you have paid the fee; it does not send a real payment.</div></div>
+  </section>
+
+  <section class="page" id="page-money">
+    <div class="page-heading"><div><h2>My money</h2><p>See what you have, what came in, and what still needs to be paid.</p></div><button class="btn primary" id="addIncomeBtn">＋ Add income</button></div>
+    <div class="grid stats"><div class="card mint"><div class="card-label">Money available</div><div class="stat-value" id="myMoneyAvailable">RM 0.00</div><div class="stat-foot">Starting balance + income − tracked spending</div></div><div class="card"><div class="card-label">Income / allowance</div><div class="stat-value positive" id="myMoneyIncome">RM 0.00</div><div class="stat-foot">All recorded income</div></div><div class="card"><div class="card-label">Still need to pay</div><div class="stat-value" id="myMoneyOwed">RM 0.00</div><div class="stat-foot">Outstanding fees and bills</div></div></div>
+    <div class="grid two-col"><div class="card"><div class="card-head"><div><h3>Allowance & income</h3><div class="subtle">Salary, allowance, gifts, or other money received.</div></div></div><div id="incomeList"></div></div><div class="card"><div class="card-head"><div><h3>Money you need to pay</h3><div class="subtle">Pending fees and bills from your checklist.</div></div><button class="link-btn" data-go="fees">Manage →</button></div><div id="owedList"></div><div class="notice" style="margin-top:14px">Your projected money after paying all outstanding fees is shown below.</div><div style="margin-top:13px"><div class="subtle">After outstanding payments</div><div class="stat-value" id="afterPayments" style="font-size:25px">RM 0.00</div></div></div></div>
+    <div class="card"><div class="card-head"><div><h3>Starting money / allowance balance</h3><div class="subtle">Set the amount you already have before tracked transactions.</div></div></div><form id="startingBalanceForm" class="form-grid"><div class="form-group"><label for="startingBalance">Starting balance (MYR)</label><input id="startingBalance" type="number" min="0" step=".01" required></div><div class="form-group" style="align-self:end"><button class="btn primary">Update starting balance</button></div></form></div>
+  </section>
+
+  <section class="page" id="page-profile">
+    <div class="page-heading"><div><h2>Your profile</h2><p>Manage your sign-in details and keep your account secure.</p></div><button class="btn ghost" id="profileSignOutBtn">↪ Sign out</button></div>
+    <div class="card profile-card">
+      <div class="goal-top" style="margin-bottom:20px"><div class="avatar profile-avatar-large" id="profileAvatarLarge">W</div><div><strong id="profileName">Your account</strong><small id="profileEmailSummary">—</small></div></div>
+      <div class="form-grid">
+        <div class="form-group full"><label for="profileEmail">Email address</label><input id="profileEmail" type="email" readonly></div>
+        <div class="form-group full"><label for="newEmail">Change email address</label><input id="newEmail" type="email" autocomplete="email" placeholder="Enter your new email address"></div>
+      </div>
+      <div class="profile-actions"><button class="btn primary" id="changeEmailBtn">Update email</button></div>
+      <p class="profile-note">Supabase may ask you to confirm the change from your email inbox.</p>
+      <div style="border-top:1px solid var(--line);margin:22px 0"></div>
+      <h3 class="section-title" style="margin-bottom:12px">Change password</h3>
+      <div class="form-grid"><div class="form-group full"><label for="newPassword">New password</label><input id="newPassword" type="password" minlength="8" autocomplete="new-password" placeholder="At least 8 characters"></div><div class="form-group full"><label for="confirmNewPassword">Confirm new password</label><input id="confirmNewPassword" type="password" minlength="8" autocomplete="new-password" placeholder="Enter the new password again"></div></div>
+      <div class="profile-actions"><button class="btn primary" id="changePasswordBtn">Update password</button></div>
+      <div style="border-top:1px solid var(--line);margin:22px 0"></div>
+      <div class="form-group"><label>Account created</label><div id="accountCreated" class="field" style="color:var(--muted)">—</div></div>
+      <p class="profile-note" id="profileMessage" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="page" id="page-converter">
+    <div class="page-heading"><div><h2>Currency converter</h2><p>Quickly convert between currencies for your everyday spending, including Philippine pesos.</p></div></div>
+    <div class="converter-box"><div class="card"><div class="card-head"><div><h3>Convert money</h3><div class="subtle">Enter an amount and choose currencies.</div></div><span class="stat-icon">⇄</span></div><div class="convert-field"><label for="convertAmount">You send</label><div class="convert-row"><input id="convertAmount" type="number" min="0" step="any" value="0"><select id="fromCurrency" class="select"><option value="MYR">🇲🇾 MYR</option><option value="USD">🇺🇸 USD</option><option value="SGD">🇸🇬 SGD</option><option value="EUR">🇪🇺 EUR</option><option value="GBP">🇬🇧 GBP</option><option value="AUD">🇦🇺 AUD</option><option value="PHP">🇵🇭 PHP</option></select></div></div><div class="swap-row"><button class="swap" id="swapCurrencies" aria-label="Swap currencies">↕</button></div><div class="convert-field"><label for="toCurrency">They receive</label><div class="convert-row"><input id="convertResult" readonly value="0.00"><select id="toCurrency" class="select"><option value="MYR">🇲🇾 MYR</option><option value="USD" selected>🇺🇸 USD</option><option value="SGD">🇸🇬 SGD</option><option value="EUR">🇪🇺 EUR</option><option value="GBP">🇬🇧 GBP</option><option value="AUD">🇦🇺 AUD</option><option value="PHP">🇵🇭 PHP</option></select></div></div><div class="result-box"><div class="subtle">Estimated converted amount</div><div class="big" id="convertBig">0.00</div><p id="rateLine">Illustrative rate · not a live exchange quote.</p></div><p class="subtle" style="margin:13px 2px 0">Rates are placeholders for this offline prototype. Real exchange rates and provider fees should be connected before relying on the conversion for payments.</p></div><div class="card" style="margin-top:16px"><h3 class="section-title">Quick currency rates</h3><div class="quick-currencies" id="quickRates"></div></div></div>
+  </section>
+
+
+</main>
+</div>
+<nav class="bottom-nav" id="bottomNav">
+  <button class="active" data-page="overview"><span>▦</span><span>Home</span></button>
+  <button data-page="transactions"><span>↔</span><span>Activity</span></button>
+  <button data-page="fees"><span>☑</span><span>Fees</span></button>
+  <button data-page="converter"><span>⇄</span><span>Convert</span></button>
+  <button data-page="savings"><span>♧</span><span>Savings</span></button>
+  <button data-page="money"><span>▤</span><span>Money</span></button>
+</nav>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog id="transactionDialog"><form id="transactionForm" class="card" style="min-width:min(520px,90vw);margin:0"><div class="card-head"><div><h3 class="section-title">Add transaction</h3><div class="subtle">Enter the amount in the currency you used.</div></div><button type="button" class="icon-btn" data-close="transactionDialog">✕</button></div><div class="form-grid"><div class="form-group full"><label for="txName">Transaction name</label><input id="txName" required maxlength="70" placeholder="e.g. Groceries, salary"></div><div class="form-group"><label for="txAmount">Amount</label><input id="txAmount" required type="number" min=".01" step="any" placeholder="25.00"></div><div class="form-group"><label for="txCurrency">Currency</label><select id="txCurrency" class="select"><option>MYR</option><option>USD</option><option>SGD</option><option>EUR</option><option>GBP</option><option>AUD</option><option>PHP</option></select></div><div class="form-group"><label for="txType">Type</label><select id="txType" class="select"><option value="Expense">Expense</option><option value="Income">Income</option></select></div><div class="form-group"><label for="txCategory">Category</label><select id="txCategory" class="select"><option>Food & dining</option><option>Shopping</option><option>Transport</option><option>Subscriptions</option><option>Bills</option><option>Education</option><option>Housing</option><option>Other</option><option>Income</option></select></div></div><div class="form-actions"><button type="button" class="btn ghost" data-close="transactionDialog">Cancel</button><button class="btn primary" type="submit">Save transaction</button></div></form></dialog>
+<dialog id="feeDialog"><form id="feeForm" class="card" style="min-width:min(520px,90vw);margin:0"><div class="card-head"><div><h3 class="section-title">Add a fee or bill</h3><div class="subtle">Track a payment you need to make.</div></div><button type="button" class="icon-btn" data-close="feeDialog">✕</button></div><div class="form-grid"><div class="form-group full"><label for="feeName">Fee name</label><input id="feeName" required maxlength="70" placeholder="e.g. Tuition fee"></div><div class="form-group"><label for="feeAmount">Amount</label><input id="feeAmount" required type="number" min=".01" step="any" placeholder="100"></div><div class="form-group"><label for="feeCurrency">Currency</label><select id="feeCurrency" class="select"><option>MYR</option><option>USD</option><option>SGD</option><option>EUR</option><option>GBP</option><option>AUD</option><option>PHP</option></select></div><div class="form-group"><label for="feeDue">Due date</label><input id="feeDue" type="date" required></div><div class="form-group"><label for="feeCategory">Expense category</label><select id="feeCategory" class="select"><option>Bills</option><option>Education</option><option>Subscriptions</option><option>Housing</option><option>Food & dining</option><option>Shopping</option><option>Transport</option><option>Other</option></select></div></div><div class="form-actions"><button type="button" class="btn ghost" data-close="feeDialog">Cancel</button><button class="btn primary" type="submit">Add fee</button></div></form></dialog>
+<dialog id="goalDialog"><form id="goalForm" class="card" style="min-width:min(520px,90vw);margin:0"><div class="card-head"><div><h3 class="section-title">Create a savings goal</h3><div class="subtle">Give your next goal a name and target.</div></div><button type="button" class="icon-btn" data-close="goalDialog">✕</button></div><div class="form-grid"><div class="form-group full"><label for="goalName">Goal name</label><input id="goalName" required maxlength="70" placeholder="e.g. New laptop"></div><div class="form-group"><label for="goalTarget">Target (MYR)</label><input id="goalTarget" required type="number" min=".01" step="any" placeholder="1500"></div><div class="form-group"><label for="goalInitial">Already saved (MYR)</label><input id="goalInitial" type="number" min="0" step="any" value="0"></div></div><div class="form-actions"><button type="button" class="btn ghost" data-close="goalDialog">Cancel</button><button class="btn primary" type="submit">Create goal</button></div></form></dialog>
+<dialog id="budgetDialog"><form id="budgetForm" class="card" style="min-width:min(520px,90vw);margin:0"><div class="card-head"><div><h3 class="section-title">Add budget category</h3><div class="subtle">Set a spending limit in MYR.</div></div><button type="button" class="icon-btn" data-close="budgetDialog">✕</button></div><div class="form-grid"><div class="form-group"><label for="newBudgetName">Category name</label><input id="newBudgetName" required maxlength="50" placeholder="e.g. Healthcare"></div><div class="form-group"><label for="newBudgetLimit">Monthly limit (MYR)</label><input id="newBudgetLimit" required type="number" min=".01" step="any" placeholder="250"></div></div><div class="form-actions"><button type="button" class="btn ghost" data-close="budgetDialog">Cancel</button><button class="btn primary" type="submit">Add category</button></div></form></dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./supabase-config.js"></script>
+<script>
+(() => {
+  'use strict';
+  const STORAGE_KEY='cashmyflow_private_cloud_v1';
+  const cfg=window.CASHMYFLOW_SUPABASE_CONFIG||{};
+  const supabaseReady=Boolean(cfg.url&&cfg.anonKey&&!cfg.url.includes('YOUR_PROJECT')&&!cfg.anonKey.includes('YOUR_SUPABASE'));
+  const supabaseClient=(supabaseReady&&window.supabase)?window.supabase.createClient(cfg.url,cfg.anonKey):null;
+  let currentUser=null, cloudReady=false, saveTimer=null, authMode='signin';
+  const rates={MYR:1,USD:4.3,SGD:3.3,EUR:4.65,GBP:5.4,AUD:2.8,PHP:0.076};
+  const symbols={MYR:'RM',USD:'$',SGD:'S$',EUR:'€',GBP:'£',AUD:'A$',PHP:'₱'};
+  const icons={'Food & dining':'🍜','Shopping':'🛍️','Transport':'🚆','Subscriptions':'▣','Bills':'▤','Education':'🎓','Housing':'⌂','Other':'↗','Income':'↙'};
+  const defaultState=()=>({
+    baseBalance:0,
+    transactions:[],
+    budgets:[],
+    goals:[],
+    fees:[],
+    displayCurrency:'MYR'
+  });
+  let state=loadState(), txFilter='All', feeFilter='All';
+  function loadState(){return defaultState()}
+  function save(){
+    if(!cloudReady||!currentUser||!supabaseClient)return;
+    clearTimeout(saveTimer);
+    saveTimer=setTimeout(async()=>{
+      try{
+        const payload={user_id:currentUser.id,state:state,updated_at:new Date().toISOString()};
+        const {error}=await supabaseClient.from('user_finance_state').upsert(payload,{onConflict:'user_id'});
+        if(error) setToast('Cloud save failed. Check your connection.');
+      }catch(e){setToast('Cloud save failed. Check your connection.')}
+    },450);
+  }
+  function showAuthError(message){const el=$('authError');el.textContent=message;el.style.display='block'}
+  function clearAuthError(){const el=$('authError');el.textContent='';el.style.display='none'}
+  function setAuthMode(mode){
+    authMode=mode;clearAuthError();
+    $('authTitle').textContent=mode==='signin'?'Welcome back.':'Create your private account.';
+    $('authSubtitle').textContent=mode==='signin'?'Sign in to access your money data across devices.':'Create an account to keep your records synced privately.';
+    $('authSubmit').textContent=mode==='signin'?'Sign in':'Create account';
+    $('showSignIn').className='btn '+(mode==='signin'?'primary':'ghost');
+    $('showSignUp').className='btn '+(mode==='signup'?'primary':'ghost');
+    $('authConfirmWrap').style.display=mode==='signup'?'grid':'none';
+    $('authConfirm').required=mode==='signup';
+    $('authPassword').autocomplete=mode==='signup'?'new-password':'current-password';
+  }
+  async function openPrivateApp(user){
+    currentUser=user;
+    $('signedInEmail').textContent=user.email||'Signed in';
+    $('authScreen').hidden=true;$('appRoot').hidden=false;
+    cloudReady=false;state=defaultState();
+    const {data,error}=await supabaseClient.from('user_finance_state').select('state').eq('user_id',user.id).maybeSingle();
+    if(error){showToastAfterAuth('Could not load cloud data. Check that the SQL setup was completed.');}
+    else if(data&&data.state&&typeof data.state==='object'){
+      const s=data.state;
+      if(Array.isArray(s.transactions)&&Array.isArray(s.fees)&&Array.isArray(s.budgets)&&Array.isArray(s.goals))state={...defaultState(),...s};
+    }
+    cloudReady=true;render();
+  }
+  function showToastAfterAuth(message){setTimeout(()=>setToast(message),250)}
+  async function initialiseAuth(){
+    if(!supabaseReady||!supabaseClient){
+      $('authScreen').hidden=false;$('appRoot').hidden=true;
+      setAuthMode('signin');
+      $('authHelp').textContent='Sign in or create an account. Before accounts can work, finish the Supabase setup in SETUP-SUPABASE.txt and add your project URL and publishable key to supabase-config.js.';
+      return;
+    }
+    const {data:{session}}=await supabaseClient.auth.getSession();
+    if(session?.user){await openPrivateApp(session.user)}else{$('authScreen').hidden=false;$('appRoot').hidden=true;setAuthMode('signin')}
+    supabaseClient.auth.onAuthStateChange(async(event,session)=>{
+      if(session?.user && (!currentUser||currentUser.id!==session.user.id)){await openPrivateApp(session.user)}
+      else if(!session?.user){currentUser=null;cloudReady=false;$('appRoot').hidden=true;$('authScreen').hidden=false}
+    });
+  }
+  const $=id=>document.getElementById(id);
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const n=v=>Number.isFinite(Number(v))?Number(v):0;
+  const toMYR=(amount,cur)=>n(amount)*(rates[cur]||1);
+  const fromMYR=(amount,cur)=>n(amount)/(rates[cur]||1);
+  const money=(amount,cur=state.displayCurrency)=>`${symbols[cur]||cur} ${n(amount).toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2})}`;
+  const displayMoney=myr=>money(fromMYR(myr,state.displayCurrency));
+  const dateLabel=d=>{if(!d)return 'No due date';const dt=new Date(d+'T12:00:00');return Number.isNaN(dt.getTime())?d:dt.toLocaleDateString('en-MY',{day:'numeric',month:'short',year:'numeric'})};
+  const todayISO=()=>new Date().toISOString().slice(0,10);
+  const sum=arr=>arr.reduce((s,x)=>s+x,0);
+  const paidFees=()=>state.fees.filter(f=>f.paid);
+  // Fee expenses are derived from the fee checklist, so toggling a fee never creates duplicate transactions.
+  function expenseTransactions(){return [...state.transactions.filter(t=>t.type==='Expense'),...paidFees().map(f=>({id:'fee-'+f.id,name:f.name,category:f.category||'Bills',amount:f.amount,currency:f.currency,type:'Expense',date:f.paidDate||todayISO(),isFee:true}))]}
+  function allIncomeMYR(){return sum(state.transactions.filter(t=>t.type==='Income').map(t=>toMYR(t.amount,t.currency)))}
+  function allExpenseMYR(){return sum(expenseTransactions().map(t=>toMYR(t.amount,t.currency)))}
+  function categorySpent(name){return sum(expenseTransactions().filter(t=>t.category===name).map(t=>toMYR(t.amount,t.currency)))}
+  function budgetTotal(){return sum(state.budgets.map(b=>b.limit))}
+  function paidFeeTotal(){return sum(paidFees().map(f=>toMYR(f.amount,f.currency)))}
+  function outstandingTotal(){return sum(state.fees.filter(f=>!f.paid).map(f=>toMYR(f.amount,f.currency)))}
+  function setToast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(setToast.timer);setToast.timer=setTimeout(()=>el.classList.remove('show'),2400)}
+  function openDialog(id){$(id).showModal()}
+  function closeDialog(id){$(id).close()}
+  function showPage(name){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+name));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===name));const titles={overview:'Overview',transactions:'Transactions',budgets:'Budgets',savings:'Savings goals',fees:'Fees to pay',converter:'Currency converter',money:'My money',profile:'Your profile'};const h=$('greeting');h.textContent=name==='overview'?'Good evening 👋':titles[name];$('dateLine').textContent=name==='overview'?'Here’s your financial snapshot.':({transactions:'Review your income and spending.',budgets:'Give every category a clear spending limit.',savings:'Every goal starts with a small step.',fees:'Keep upcoming payments organised.',converter:'Quick conversions across seven currencies.',money:'Your income, available money, and upcoming payments.',profile:'Manage your email, password, and account details.'}[name]);window.scrollTo({top:0,behavior:'smooth'});render()}
+  function txHTML(t){const income=t.type==='Income';return `<div class="transaction"><div class="tx-icon ${income?'income':''}">${icons[t.category]||'↗'}</div><div class="tx-main"><strong>${esc(t.name)} ${t.isFee?'<span class="status paid">PAID FEE</span>':''}</strong><span>${esc(t.category)} · ${dateLabel(t.date)} · ${esc(t.currency)}</span></div><div class="tx-amount ${income?'positive':'negative'}">${income?'+':'−'}${money(t.amount,t.currency)}<small>${income?'Income':'Expense'}</small></div>${t.isFee?'':`<button class="btn small ghost danger" data-delete-tx="${esc(t.id)}" aria-label="Delete ${esc(t.name)}">✕</button>`}</div>`}
+  function renderTransactions(){const all=[...state.transactions,...paidFees().map(f=>({id:'fee-'+f.id,name:f.name,category:f.category||'Bills',amount:f.amount,currency:f.currency,type:'Expense',date:f.paidDate||todayISO(),isFee:true}))].sort((a,b)=>(b.date||'').localeCompare(a.date||''));const q=$('txSearch').value.trim().toLowerCase();const filtered=all.filter(t=>(txFilter==='All'||t.type===txFilter)&&(`${t.name} ${t.category} ${t.currency}`).toLowerCase().includes(q));$('transactionsList').innerHTML=filtered.length?filtered.map(txHTML).join(''):'<div class="empty">No matching transactions yet.</div>';$('txIncomeTotal').textContent=displayMoney(allIncomeMYR());$('txExpenseTotal').textContent=displayMoney(allExpenseMYR());}
+  function renderBudgets(){const total=budgetTotal(),spent=sum(state.budgets.map(b=>categorySpent(b.name)));$('budgetTotal').textContent=displayMoney(total);$('budgetOverallBar').style.width=Math.min(100,total?spent/total*100:0)+'%';$('budgetOverallFoot').textContent=`${displayMoney(spent)} spent · ${displayMoney(Math.max(0,total-spent))} remaining`;const markup=state.budgets.map(b=>{const used=categorySpent(b.name),pct=b.limit?used/b.limit*100:0;return `<div class="card"><div class="card-head"><div><h3>${esc(b.name)}</h3><div class="subtle">Monthly spending limit</div></div><span class="stat-icon">${icons[b.name]||'◴'}</span></div><div style="font-size:24px;font-weight:800;margin:8px 0">${displayMoney(used)} <span class="subtle" style="font-size:12px;font-weight:500">/ ${money(b.limit,'MYR')}</span></div><div class="progress"><span style="width:${Math.min(100,pct)}%;background:${pct>100?'var(--red)':b.color||'var(--mint)'}"></span></div><div class="subtle" style="margin-top:8px;color:${pct>100?'var(--red)':'var(--muted)'}">${pct>100?`Over budget by ${displayMoney(used-b.limit)}`:`${displayMoney(b.limit-used)} remaining`} · ${Math.round(pct)}%</div><div class="form-group" style="margin-top:13px"><label>Monthly limit (MYR)</label><input type="number" min="0" step=".01" value="${b.limit}" data-budget-limit="${esc(b.id)}"></div></div>`}).join('');$('budgetsList').innerHTML=markup||'<div class="empty">Add a budget category to get started.</div>';renderOverviewBudgets()}
+  function renderOverviewBudgets(){$('overviewBudgets').innerHTML=state.budgets.slice(0,5).map(b=>{const used=categorySpent(b.name),pct=b.limit?used/b.limit*100:0;return `<div class="budget-row"><div class="budget-top"><strong>${esc(b.name)}</strong><span class="${pct>100?'over':''}">${displayMoney(used)} / ${money(b.limit,'MYR')}</span></div><div class="progress"><span style="width:${Math.min(100,pct)}%;background:${pct>100?'var(--red)':b.color||'var(--mint)'}"></span></div></div>`}).join('')||'<div class="empty">No budgets yet.</div>'}
+  function renderGoals(){const saved=sum(state.goals.map(g=>g.saved)),target=sum(state.goals.map(g=>g.target));$('goalsTotal').textContent=money(saved,'MYR');$('goalsBar').style.width=Math.min(100,target?saved/target*100:0)+'%';$('goalsFoot').textContent=`${Math.round(target?saved/target*100:0)}% of ${money(target,'MYR')} in total targets`;$('savingsSummary').textContent=displayMoney(saved);$('savingsSummaryFoot').textContent=`${Math.round(target?saved/target*100:0)}% of your savings targets`;$('goalsList').innerHTML=state.goals.map(g=>{const pct=g.target?g.saved/g.target*100:0;return `<div class="card goal-card"><div class="goal-top"><div class="goal-icon">${g.icon||'♧'}</div><div><strong>${esc(g.name)}</strong><small>${money(g.saved,'MYR')} saved of ${money(g.target,'MYR')}</small></div><span class="goal-pct">${Math.round(pct)}%</span></div><div class="progress"><span style="width:${Math.min(100,pct)}%;background:var(--purple)"></span></div><div class="subtle">${displayMoney(Math.max(0,g.target-g.saved))} to go</div><form class="goal-actions" data-goal-contribute="${esc(g.id)}"><input type="number" min=".01" step=".01" placeholder="Add contribution (MYR)" required aria-label="Contribution amount"><button class="btn small primary">＋ Add</button></form><div style="display:flex;justify-content:flex-end"><button class="btn small ghost danger" data-delete-goal="${esc(g.id)}">Remove goal</button></div></div>`}).join('')||'<div class="empty">Create your first savings goal.</div>'}
+  function renderFees(){const pending=state.fees.filter(f=>!f.paid);$('feesOutstanding').textContent=displayMoney(outstandingTotal());$('feesPaidTotal').textContent=displayMoney(paidFeeTotal());$('feesPaidCount').textContent=`${paidFees().length} / ${state.fees.length}`;$('feesProgress').style.width=(state.fees.length?paidFees().length/state.fees.length*100:0)+'%';$('feeBadge').textContent=pending.length||'';$('outstandingValue').textContent=displayMoney(outstandingTotal());$('feesList').innerHTML=state.fees.filter(f=>feeFilter==='All'||(feeFilter==='Paid'?f.paid:!f.paid)).sort((a,b)=>a.due.localeCompare(b.due)).map(f=>`<div class="fee-item"><label class="check-wrap" title="${f.paid?'Untick to reverse the expense':'Mark fee as paid'}"><input class="fee-check" type="checkbox" data-fee-check="${esc(f.id)}" ${f.paid?'checked':''} aria-label="Mark ${esc(f.name)} as paid"></label><div class="fee-main ${f.paid?'paid':''}"><strong>${esc(f.name)}</strong><small>${esc(f.category||'Bills')} · Due ${dateLabel(f.due)} · ${esc(f.currency)}</small></div><div class="fee-right"><strong>${money(f.amount,f.currency)}</strong><span class="status ${f.paid?'paid':'pending'}">${f.paid?'✓ Paid':'Pending'}</span></div><button class="btn small ghost danger" data-delete-fee="${esc(f.id)}" aria-label="Remove fee">✕</button></div>`).join('')||'<div class="empty">No fees in this view. Add a payment to get started.</div>';const list=[...state.fees].sort((a,b)=>a.due.localeCompare(b.due)).slice(0,4);$('upcomingFees').innerHTML=list.length?list.map(f=>`<div class="transaction"><div class="tx-icon">${f.paid?'✓':'◷'}</div><div class="tx-main"><strong>${esc(f.name)}</strong><span>${f.paid?'Paid':`Due ${dateLabel(f.due)}`}</span></div><div class="tx-amount">${money(f.amount,f.currency)}<small class="${f.paid?'positive':'subtle'}">${f.paid?'Paid':'Pending'}</small></div></div>`).join(''):'<div class="empty">No fees added yet.</div>'}
+  function renderOverview(){const income=allIncomeMYR(),expenses=allExpenseMYR();$('balanceValue').textContent=displayMoney(state.baseBalance+income-expenses);$('incomeValue').textContent=displayMoney(income);$('expenseValue').textContent=displayMoney(expenses);$('incomeSummary').textContent=displayMoney(income);$('expenseSummary').textContent=displayMoney(expenses);$('feesSummary').textContent=displayMoney(sum(paidFees().map(f=>toMYR(f.amount,f.currency))));$('savingsSummary').textContent=displayMoney(sum(state.goals.map(g=>g.saved)));const all=[...state.transactions,...paidFees().map(f=>({id:'fee-'+f.id,name:f.name,category:f.category||'Bills',amount:f.amount,currency:f.currency,type:'Expense',date:f.paidDate||todayISO(),isFee:true}))].sort((a,b)=>(b.date||'').localeCompare(a.date||''));$('recentTransactions').innerHTML=all.slice(0,5).map(txHTML).join('')||'<div class="empty">No transactions yet.</div>';const days=Array.from({length:7},(_,i)=>{const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-(6-i));const key=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;const value=sum(expenseTransactions().filter(t=>t.date===key).map(t=>toMYR(t.amount,t.currency)));return{label:d.toLocaleDateString(undefined,{weekday:'short'}).slice(0,1),value}});const max=Math.max(1,...days.map(d=>d.value));$('chart').innerHTML=days.map(d=>`<div class="bar-wrap"><div class="bar" title="${money(d.value,'MYR')}" style="height:${Math.max(4,d.value/max*100)}%"></div><span class="bar-label">${d.label}</span></div>`).join('')}
+  function renderConverter(){const from=$('fromCurrency').value,to=$('toCurrency').value,amount=Math.max(0,n($('convertAmount').value));const result=amount*(rates[from]||1)/(rates[to]||1);$('convertResult').value=money(result,to);$('convertBig').textContent=money(result,to);$('rateLine').textContent=`1 ${from} ≈ ${money((rates[from]||1)/(rates[to]||1),to)} · Illustrative rate`; $('quickRates').innerHTML=Object.keys(rates).filter(c=>c!==from).map(c=>`<button data-quick-currency="${c}"><strong>${from} → ${c}</strong><span>1 ${from} ≈ ${money((rates[from]||1)/(rates[c]||1),c)}</span></button>`).join('')}
+  function renderMyMoney(){
+    const available=state.baseBalance+allIncomeMYR()-allExpenseMYR();
+    $('myMoneyAvailable').textContent=displayMoney(available);
+    $('myMoneyIncome').textContent=displayMoney(allIncomeMYR());
+    $('myMoneyOwed').textContent=displayMoney(outstandingTotal());
+    $('afterPayments').textContent=displayMoney(available-outstandingTotal());
+    $('startingBalance').value=state.baseBalance;
+    const incomes=state.transactions.filter(t=>t.type==='Income').sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+    $('incomeList').innerHTML=incomes.length?incomes.map(t=>`<div class="transaction"><div class="tx-icon income">↙</div><div class="tx-main"><strong>${esc(t.name)}</strong><span>${dateLabel(t.date)} · ${esc(t.currency)}</span></div><div class="tx-amount positive">+${money(t.amount,t.currency)}</div></div>`).join(''):'<div class="empty">No income recorded yet. Add your allowance or salary.</div>';
+    const pending=state.fees.filter(f=>!f.paid).sort((a,b)=>a.due.localeCompare(b.due));
+    $('owedList').innerHTML=pending.length?pending.map(f=>`<div class="transaction"><div class="tx-icon">◷</div><div class="tx-main"><strong>${esc(f.name)}</strong><span>Due ${dateLabel(f.due)}</span></div><div class="tx-amount negative">${money(f.amount,f.currency)}<small>Pending</small></div></div>`).join(''):'<div class="empty">Nothing outstanding — all listed fees are paid.</div>';
+  }
+
+  function dueSoonFees(){
+    const today=new Date();today.setHours(0,0,0,0);
+    const limit=new Date(today);limit.setDate(limit.getDate()+3);
+    const toDate=d=>{if(!d)return null;const x=new Date(d+'T00:00:00');return Number.isNaN(x.getTime())?null:x};
+    return state.fees.filter(f=>!f.paid).map(f=>({...f,_dueDate:toDate(f.due)})).filter(f=>f._dueDate&&f._dueDate>=today&&f._dueDate<=limit).sort((a,b)=>a._dueDate-b._dueDate);
+  }
+  function renderNotifications(){
+    const fees=dueSoonFees(),count=$('notificationCount');
+    count.hidden=!fees.length;count.textContent=fees.length>9?'9+':String(fees.length);
+    $('notificationList').innerHTML=fees.length?fees.map(f=>{
+      const days=Math.round((f._dueDate-new Date(new Date().toDateString()))/86400000);
+      const dueLabel=days===0?'Due today':days===1?'Due tomorrow':`Due in ${days} days`;
+      return `<div class="notice-item"><span class="notice-symbol">!</span><div><strong>${esc(f.name)} · ${money(f.amount,f.currency)}</strong><small>${dueLabel} · ${dateLabel(f.due)}</small></div></div>`;
+    }).join(''):'<div class="empty" style="padding:18px 4px">No unpaid fees due in the next 3 days.</div>';
+  }
+  function renderProfile(){
+    const email=currentUser?.email||'';
+    const initial=(email.split('@')[0]||'W').trim().charAt(0).toUpperCase()||'W';
+    $('profileAvatar').textContent=initial;$('profileAvatarLarge').textContent=initial;
+    $('profileGreeting').textContent='Hi, Warren';
+    $('profileName').textContent='Warren';
+    $('profileEmailSummary').textContent=email;$('profileEmail').value=email;
+    const created=currentUser?.created_at?new Date(currentUser.created_at):null;
+    $('accountCreated').textContent=created&&!Number.isNaN(created.getTime())?created.toLocaleDateString('en-MY',{day:'numeric',month:'long',year:'numeric'}):'Unavailable';
+  }
+  function animateMoney(el,newText){
+    if(!el)return;
+    const oldText=el.textContent||'';
+    const parse=t=>{const m=t.replace(/,/g,'').match(/-?\d+(?:\.\d+)?/);return m?Number(m[0]):null};
+    const start=parse(oldText),end=parse(newText);
+    if(start===null||end===null||!Number.isFinite(start)||!Number.isFinite(end)||oldText===newText){el.textContent=newText;return}
+    const prefix=newText.match(/^[^\d-]*/)?.[0]||'',suffix=newText.match(/[^\d]*$/)?.[0]||'';
+    const duration=420,begin=performance.now();el.classList.add('money-animated');
+    const tick=now=>{const p=Math.min(1,(now-begin)/duration),eased=1-Math.pow(1-p,3),value=start+(end-start)*eased;el.textContent=prefix+value.toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2})+suffix;if(p<1)requestAnimationFrame(tick);else el.textContent=newText};
+    requestAnimationFrame(tick);
+  }
+
+  function render(){const previousBalance=$('balanceValue').textContent;save();renderOverview();const nextBalance=$('balanceValue').textContent;if(previousBalance&&previousBalance!==nextBalance){$('balanceValue').textContent=previousBalance;animateMoney($('balanceValue'),nextBalance)}renderTransactions();renderBudgets();renderGoals();renderFees();renderConverter();renderMyMoney();renderNotifications();renderProfile();$('displayCurrency').value=state.displayCurrency}
+  function addTx(t){state.transactions.unshift({...t,id:'t'+Date.now()+Math.random().toString(16).slice(2,6)});save();render();setToast('Transaction added. Spending updated.')}
+  $('showSignIn').addEventListener('click',()=>setAuthMode('signin'));
+  $('showSignUp').addEventListener('click',()=>setAuthMode('signup'));
+  $('authForm').addEventListener('submit',async e=>{
+    e.preventDefault();clearAuthError();
+    if(!supabaseClient){showAuthError('Cloud setup is incomplete. Follow SETUP-SUPABASE.txt.');return}
+    const email=$('authEmail').value.trim(),password=$('authPassword').value;
+    if(authMode==='signup'&&password!==$('authConfirm').value){showAuthError('Passwords do not match.');return}
+    $('authSubmit').disabled=true;$('authSubmit').textContent=authMode==='signin'?'Signing in…':'Creating account…';
+    try{
+      if(authMode==='signup'){
+        const {data,error}=await supabaseClient.auth.signUp({email,password});
+        if(error)throw error;
+        if(data.session?.user){await openPrivateApp(data.session.user)}
+        else{showAuthError('Account created. Check your email for the confirmation link, then sign in.')}
+      }else{
+        const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
+        if(error)throw error;
+        if(data.user)await openPrivateApp(data.user);
+      }
+    }catch(err){showAuthError(err.message||'Authentication failed.')}
+    finally{$('authSubmit').disabled=false;$('authSubmit').textContent=authMode==='signin'?'Sign in':'Create account'}
+  });
+  $('signOutBtn').addEventListener('click',async()=>{if(supabaseClient)await supabaseClient.auth.signOut();currentUser=null;cloudReady=false;$('appRoot').hidden=true;$('authScreen').hidden=false;setAuthMode('signin')});
+
+  $('profileBtn').addEventListener('click',()=>{ $('notificationPanel').classList.remove('open');showPage('profile') });
+  $('notificationBtn').addEventListener('click',()=>{const panel=$('notificationPanel'),open=!panel.classList.contains('open');panel.classList.toggle('open',open);$('notificationBtn').setAttribute('aria-expanded',String(open));renderNotifications()});
+  $('viewFeesBtn').addEventListener('click',()=>{$('notificationPanel').classList.remove('open');showPage('fees')});
+  document.addEventListener('click',e=>{if(!e.target.closest('.notification-wrap')){$('notificationPanel').classList.remove('open');$('notificationBtn').setAttribute('aria-expanded','false')}});
+  async function signOut(){if(supabaseClient)await supabaseClient.auth.signOut();currentUser=null;cloudReady=false;$('appRoot').hidden=true;$('authScreen').hidden=false;setAuthMode('signin')}
+  $('profileSignOutBtn').addEventListener('click',signOut);
+  $('signOutBtn').addEventListener('click',signOut);
+  $('changeEmailBtn').addEventListener('click',async()=>{
+    const email=$('newEmail').value.trim();$('profileMessage').textContent='';
+    if(!email){$('profileMessage').textContent='Enter your new email address first.';return}
+    $('changeEmailBtn').disabled=true;
+    try{const {error}=await supabaseClient.auth.updateUser({email});if(error)throw error;$('profileMessage').textContent='Email change requested. Check your inbox for any confirmation links.';$('newEmail').value=''}
+    catch(err){$('profileMessage').textContent=err.message||'Could not update email.'}
+    finally{$('changeEmailBtn').disabled=false}
+  });
+  $('changePasswordBtn').addEventListener('click',async()=>{
+    const password=$('newPassword').value,confirmPassword=$('confirmNewPassword').value;$('profileMessage').textContent='';
+    if(password.length<8){$('profileMessage').textContent='Use a password with at least 8 characters.';return}
+    if(password!==confirmPassword){$('profileMessage').textContent='The passwords do not match.';return}
+    $('changePasswordBtn').disabled=true;
+    try{const {error}=await supabaseClient.auth.updateUser({password});if(error)throw error;$('profileMessage').textContent='Password updated successfully.';$('newPassword').value='';$('confirmNewPassword').value=''}
+    catch(err){$('profileMessage').textContent=err.message||'Could not update password.'}
+    finally{$('changePasswordBtn').disabled=false}
+  });
+
+  document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+  document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.go)));
+  $('displayCurrency').addEventListener('change',e=>{state.displayCurrency=e.target.value;render()});
+  $('resetBtn').addEventListener('click',()=>{if(confirm('Clear all transactions, fees, budgets, and savings goals in your account? This cannot be undone.')){state=defaultState();save();render();showPage('overview');setToast('Account data cleared.')}});
+  $('addTransactionBtn').addEventListener('click',()=>openDialog('transactionDialog'));
+  $('addIncomeBtn').addEventListener('click',()=>{ $('txType').value='Income';$('txCategory').value='Income';$('txName').value='';$('txAmount').value='';$('txCurrency').value=state.displayCurrency;openDialog('transactionDialog');$('txName').placeholder='e.g. Weekly allowance'; });
+  $('startingBalanceForm').addEventListener('submit',e=>{e.preventDefault();state.baseBalance=Math.max(0,n($('startingBalance').value));save();render();setToast('Starting balance updated.')});
+
+  $('addFeeBtn').addEventListener('click',()=>{$('feeDue').value=todayISO();openDialog('feeDialog')});
+  $('addGoalBtn').addEventListener('click',()=>openDialog('goalDialog'));
+  $('addBudgetBtn').addEventListener('click',()=>openDialog('budgetDialog'));
+  document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeDialog(b.dataset.close)));
+  document.querySelectorAll('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d)d.close()}));
+  $('transactionForm').addEventListener('submit',e=>{e.preventDefault();const type=$('txType').value;addTx({name:$('txName').value.trim(),amount:n($('txAmount').value),currency:$('txCurrency').value,type,category:type==='Income'?'Income':$('txCategory').value,date:todayISO()});e.target.reset();closeDialog('transactionDialog')});
+  $('feeForm').addEventListener('submit',e=>{e.preventDefault();state.fees.push({id:'f'+Date.now(),name:$('feeName').value.trim(),amount:n($('feeAmount').value),currency:$('feeCurrency').value,due:$('feeDue').value||todayISO(),category:$('feeCategory').value,paid:false});save();render();closeDialog('feeDialog');e.target.reset();setToast('Fee added to your checklist.')});
+  $('goalForm').addEventListener('submit',e=>{e.preventDefault();state.goals.push({id:'g'+Date.now(),name:$('goalName').value.trim(),target:n($('goalTarget').value),saved:n($('goalInitial').value),icon:'🎯'});save();render();closeDialog('goalDialog');e.target.reset();setToast('Savings goal created.')});
+  $('budgetForm').addEventListener('submit',e=>{e.preventDefault();const name=$('newBudgetName').value.trim();if(state.budgets.some(b=>b.name.toLowerCase()===name.toLowerCase())){setToast('That budget category already exists.');return}state.budgets.push({id:'b'+Date.now(),name,limit:n($('newBudgetLimit').value),color:'#8bb8ff'});save();render();closeDialog('budgetDialog');e.target.reset();setToast('Budget category added.')});
+  $('plannerForm').addEventListener('submit',e=>{e.preventDefault();const target=n($('monthlyBudget').value),total=budgetTotal();if(target<=0||!state.budgets.length)return;let assigned=0;state.budgets.forEach((b,i)=>{b.limit=i===state.budgets.length-1?Math.max(0,target-assigned):Math.round(target*(b.limit/Math.max(total,1))*100)/100;assigned+=b.limit});save();render();setToast('Monthly budget distributed.')});
+  $('txSearch').addEventListener('input',renderTransactions);
+  document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{txFilter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('active',x===b));renderTransactions()}));
+  document.querySelectorAll('[data-fee-filter]').forEach(b=>b.addEventListener('click',()=>{feeFilter=b.dataset.feeFilter;document.querySelectorAll('[data-fee-filter]').forEach(x=>x.classList.toggle('active',x===b));renderFees()}));
+  $('feesList').addEventListener('change',e=>{const cb=e.target.closest('[data-fee-check]');if(!cb)return;const fee=state.fees.find(f=>f.id===cb.dataset.feeCheck);if(!fee)return;fee.paid=cb.checked;fee.paidDate=cb.checked?todayISO():null;save();render();setToast(cb.checked?'Fee marked paid and added to spending.':'Payment unchecked; expense reversed.')});
+  document.addEventListener('click',e=>{const delTx=e.target.closest('[data-delete-tx]');if(delTx){state.transactions=state.transactions.filter(t=>t.id!==delTx.dataset.deleteTx);save();render();setToast('Transaction deleted.');return}const delFee=e.target.closest('[data-delete-fee]');if(delFee){const fee=state.fees.find(f=>f.id===delFee.dataset.deleteFee);if(fee&&confirm(`Remove "${fee.name}"${fee.paid?' and reverse its tracked expense':''}?`)){state.fees=state.fees.filter(f=>f.id!==fee.id);save();render();setToast('Fee removed.')}return}const delGoal=e.target.closest('[data-delete-goal]');if(delGoal){state.goals=state.goals.filter(g=>g.id!==delGoal.dataset.deleteGoal);save();render();setToast('Savings goal removed.');return}const quick=e.target.closest('[data-quick-currency]');if(quick){$('toCurrency').value=quick.dataset.quickCurrency;renderConverter()}});
+  $('budgetsList').addEventListener('change',e=>{const input=e.target.closest('[data-budget-limit]');if(!input)return;const b=state.budgets.find(x=>x.id===input.dataset.budgetLimit);if(b){b.limit=Math.max(0,n(input.value));save();render();setToast('Budget limit updated.')}});
+  $('goalsList').addEventListener('submit',e=>{const form=e.target.closest('[data-goal-contribute]');if(!form)return;e.preventDefault();const g=state.goals.find(x=>x.id===form.dataset.goalContribute),amt=n(form.querySelector('input').value);if(g&&amt>0){g.saved+=amt;save();render();setToast('Savings contribution recorded.')}});
+  $('convertAmount').addEventListener('input',renderConverter);$('fromCurrency').addEventListener('change',renderConverter);$('toCurrency').addEventListener('change',renderConverter);
+  $('swapCurrencies').addEventListener('click',()=>{const a=$('fromCurrency').value;$('fromCurrency').value=$('toCurrency').value;$('toCurrency').value=a;renderConverter()});
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+  }
+  const now=new Date();$('dateLine').textContent='Here’s your financial snapshot · '+now.toLocaleDateString('en-MY',{weekday:'long',day:'numeric',month:'long'});$('feeDue').value=todayISO();initialiseAuth();
+})();
+</script>
+</div>
+</body>
+</html>
